@@ -1,0 +1,147 @@
+html,body,div,p,ul,li,ol,dl,dt,dd,table,tr,td,th,form,fieldset,legend,h1,h2,h3,h4,h5,h6,hr,input,img{
+		margin:0;
+		padding:0;
+	}
+	body{
+		font-family: "微软雅黑" ,Arial;
+	}
+	li{
+		list-style: none;
+	}
+	a{
+		text-decoration: none;
+	}
+	img{
+		border:0;
+	}
+
+/*顶部条*/
+	.toolbar{
+		width:100%;
+		height: 29px;
+		border-bottom:1px solid #e7e7e7;
+	}
+	.toolbar_content{
+		width:1200px;
+		height: 29px;
+		margin:0 auto;
+	}
+	/*顶部登录块-左侧*/
+	.toolbar_content_left{
+		height: 29px;
+		line-height: 29px;
+		float: left;
+	}
+	.toolbar_content_left li{
+		float:left;
+		margin-right: 10px;
+		font-size: 12px;
+		color:#555555;
+	}
+	.toolbar_content_left li a{
+		color:#ed4545;
+	}
+	.toolbar_content_left li:nth-child(n+4) a{
+		display: block;
+		text-indent: -999px;
+		margin-top: 4px;
+	}
+	/*登录*/
+	.toolbar_content_left li:nth-child(2) a:hover,
+	.toolbar_content_left li:nth-child(3) a:hover{
+		text-decoration: underline;
+	}
+	/*注册*/
+
+	/*支付宝登录*/
+	.toolbar_content_left li:nth-child(4) a{
+		width:90px;
+		background:url("../images/img_index/switch_img.png") no-repeat;
+	} 
+	/*QQ登录*/
+	.toolbar_content_left li:nth-child(5) a{
+		width:50px;
+		background:url("../images/img_index/switch_img.png") -100px 0 no-repeat;
+	} 
+	/*微博登录*/
+	.toolbar_content_left li:nth-child(6) a{
+		width:85px;
+		background:url("../images/img_index/switch_img.png") -160px 0 no-repeat;
+	} 
+	/*顶部信息块-右侧*/
+	.toolbar_content_right{
+		height: 29px;
+		line-height: 29px;
+		float:right;
+	}
+	.toolbar_content_right li{
+		float:left;
+		font-size: 12px;
+		color:#555555;
+		padding-left:5px;
+		padding-right:5px;
+	}
+	.arrow{
+		position:absolute;
+		right: 10px;
+    	top: 4px;
+		display: block;
+		width: 10px;
+		height: 10px;
+		background:url("../images/img_index/arrow_down.png") no-repeat center center;
+		transition: transform 0.1s ease-in 0s;
+	}
+	.toolbar_content_right li a{
+		padding-right: 10px;
+		border-right: 1px solid #DDDDDD;
+		color:#555;
+	}
+	.toolbar_content_right a:hover{		
+		color:#e60012;
+		text-decoration: underline;
+	}
+	/*我的良品*/
+	.toolbar_content_right .myInfo{
+		position: relative;
+		padding-right: 25px;
+	}
+	.toolbar_content_right .tel_img{
+		float: left;
+		display: block;
+		height: 25px;
+		width: 25px;
+		background:url("../images/img_index/get_icon.png") 5px 7px no-repeat;
+	}
+
+	.toolbar_content_right .tel_num{
+		font-family: "微软雅黑";
+		font-size: 15px;
+		color:#FF5160;
+		font-weight: bold;
+	}
+	.toolbar_content_right li:last-child a{
+		display: block;
+		width:100%;
+		height: 100%;
+		background:#F14648;
+		text-align: center;
+		color:white;
+		border:none;
+		padding-left: 5px;
+	}
+	.toolbar_content_right .chat{
+		float: right;
+		width:22px;
+		height: 16px;
+		margin-top: 6px;
+		background:url(../images/img_index/switch_img.png) -410px 0 no-repeat;
+	}
+	/*清除浮动*/
+	.clear_float:after{
+		display: block;
+		height: 0;
+		content:".";
+		visibility: hidden;
+		overflow: hidden;
+		clear: both;
+	}
