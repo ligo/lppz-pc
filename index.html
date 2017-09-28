@@ -23,13 +23,51 @@
 				<li><a href="">微博登录</a></li>
 			</ul>
 			<ul class="toolbar_content_right">
-				<li>
-					<a href="" class="myInfo">我的良品<i class="arrow"></i></a>
+				<li class="myInfo_li">
+					<a href="" class="myInfo ">我的良品<i class="arrow"></i></a>
 					<div class="myInfo_hover">
-						
+						<div class="myInfo_top">
+							<div class="user_head">
+								<a href=""><img src="images/img_index/avatar.png" alt=""></a>
+							</div>
+							<a href="">您好，请登录</a>
+						</div>
+						<ul class="myInfo_mid">
+							<li><a href="">我的订单</a></li>
+							<li><a href="">我的关注</a></li>
+							<li><a href="">我的优惠券</a></li>
+							<li><a href="">我的积分</a></li>
+							<li><a href="">签到有好礼</a></li>
+							<li><a href="">购物指南</a></li>
+						</ul>
+						<div class="myInfo_bottom">
+							<p>最近浏览 <span><a href="" style="color:#555">更多></a></span></p>
+						</div>
 					</div>
 				</li>
-				<li><a href="">关注良品</a></li>
+				<li class="attention_li">
+					<a href="">关注良品</a>
+					<div class="attention">
+						<div class="wb">
+							<div class="wb-tit">
+								关注微博
+							</div>
+							<div class="wb-plus">
+								<iframe src="http://widget.weibo.com/relationship/followbutton.php?btn=red&style=2&uid=1851770484&width=136&height=24&language=zh_cn" width="136" height="24" scrolling="no" frameborder="0"></iframe>
+							</div>
+						</div>
+						<div class="attention_mid">
+							<img src="images/img_index/dz_qrcode.jpg" alt="">
+						</div>
+						<div class="attention_bottom">
+							<img src="images/img_index/weixin.png" alt="">
+							<div>
+								<p>微信扫一扫</p>
+								<p>优惠随身携带!</p>
+							</div>
+						</div>
+					</div>
+				</li>
 				<li><a href="">官方网站</a></li>
 				<li><p><span class="tel_img"></span>全国订购热线：<span class="tel_num">400-1177-517</span></p></li>
 				<li><a href="">在线客服 <i class="chat"></i></a></li>
@@ -59,6 +97,15 @@
 			<div class="main_buy">
 				<a href="">购物车</a>
 				<span class="buy_num"><b>0</b></span>
+				<div class="buy_show">
+					<p>最近加入的商品</p>
+					<div class="buy_show_bottom">
+						<div class="buy_right">
+							<p>共计<span>0</span>件商品，共计<span>¥0.00</span></p>
+							<a href="">去购物车结算</a>
+						</div>						
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="shop_menu">
@@ -169,19 +216,586 @@
 				<li><a href=""><img src="images/img_index/1F_aside.jpg" alt=""></a></li>
 				<li>
 					<ul class="third_shop_list">
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
+						<li>
+							<a href=""><img src="images/img_index/list_1_01.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">伊朗开心果190g</a>
+								<span class="shop_list_price">
+									<small>￥</small>25.<small>90</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+							<a href=""><img src="images/img_index/list_1_02.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">碧根果椒盐味190g</a>
+								<span class="shop_list_price">
+									<small>￥</small>19.<small>90</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+							<a href=""><img src="images/img_index/list_1_03.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">东北红松218g</a>
+								<span class="shop_list_price">
+									<small>￥</small>26.<small>90</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+							<a href=""><img src="images/img_index/list_1_04.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">奶香夏威夷果120g</a>
+								<span class="shop_list_price">
+									<small>￥</small>15.<small>90</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+							<a href=""><img src="images/img_index/list_1_05.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">【良品铺子】小米锅巴  麻辣味 90g*2</a>
+								<span class="shop_list_price">
+									<small>￥</small>10.<small>90</small>
+								</span>
+							</div>
+						</li>	
 						<li></li>
 					</ul>
 				</li>
 			</ul>
 		</div>
+		<!--2F-->
+		<div class="one_floor">
+			<div class="active_tit_floor">
+				<h3  class="shop_tit_floor"><span>2F</span>肉脯鱼干</h3>
+				<ul class="active_list_floor">
+					<li><a  id="active_list_floor_focus" href="">猪肉系列</a></li>
+					<li><a href="">牛肉系列</a></li>
+					<li><a href="">鸡鸭系列</a></li>	
+				</ul>
+				<a href="" class="more_shop">更多商品></a>
+			</div>
+			<ul class="one_floor_ul">
+				<li><a href=""><img src="images/img_index/2F.jpg" alt=""></a></li>
+				<li><a href=""><img src="images/img_index/2F_aside.jpg" alt=""></a></li>
+				<li>
+					<ul class="third_shop_list">
+						<li>
+							<a href=""><img src="images/img_index/list_2_01.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">麻辣零食组合 394g</a>
+								<span class="shop_list_price">
+									<small>￥</small>36.<small>90</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+							<a href=""><img src="images/img_index/list_2_02.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">香辣猪尾 238g</a>
+								<span class="shop_list_price">
+									<small>￥</small>35.<small>90</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+							<a href=""><img src="images/img_index/list_2_03.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">脆骨香辣味 150g</a>
+								<span class="shop_list_price">
+									<small>￥</small>25.<small>90</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+							<a href=""><img src="images/img_index/list_2_04.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">迷你烤香肠（香辣味） 290g</a>
+								<span class="shop_list_price">
+									<small>￥</small>33.<small>90</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+						</li>							
+						<li>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<!--3F-->
+		<div class="one_floor">
+			<div class="active_tit_floor">
+				<h3  class="shop_tit_floor"><span>3F</span>果干果脯</h3>
+				<ul class="active_list_floor">
+					<li><a  id="active_list_floor_focus" href="">缤纷果干</a></li>
+					<li><a href="">话梅山楂</a></li>
+					<li><a href="">红枣葡萄</a></li>	
+				</ul>
+				<a href="" class="more_shop">更多商品></a>
+			</div>
+			<ul class="one_floor_ul">
+				<li><a href=""><img src="images/img_index/3F.jpg" alt=""></a></li>
+				<li><a href=""><img src="images/img_index/3F_aside.jpg" alt=""></a></li>
+				<li>
+					<ul class="third_shop_list">
+						<li>
+							<a href=""><img src="images/img_index/list_3_01.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">菠萝片（100g）（电商专供新包装）</a>
+								<span class="shop_list_price">
+									<small>￥</small>10.<small>90</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+							<a href=""><img src="images/img_index/list_3_02.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">什锦果干 506g</a>
+								<span class="shop_list_price">
+									<small>￥</small>39.<small>90</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+							<a href=""><img src="images/img_index/list_3_03.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">蜂蜜味樱桃 80g</a>
+								<span class="shop_list_price">
+									<small>￥</small>15.<small>90</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+							<a href=""><img src="images/img_index/list_3_04.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">柿饼280g（电商专供）</a>
+								<span class="shop_list_price">
+									<small>￥</small>26.<small>90</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+							<a href=""><img src="images/img_index/list_3_05.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">泰国芒果干 108g</a>
+								<span class="shop_list_price">
+									<small>￥</small>12.<small>90</small>
+								</span>
+							</div>
+						</li>							
+						<li>
+							<a href=""><img src="images/img_index/list_3_06.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">冻干红毛丹 30g</a>
+								<span class="shop_list_price">
+									<small>￥</small>12.<small>90</small>
+								</span>
+							</div>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<!--4F-->
+		<div class="one_floor">
+			<div class="active_tit_floor">
+				<h3  class="shop_tit_floor"><span>4F</span>素食山珍</h3>
+				<ul class="active_list_floor">
+					<li><a  id="active_list_floor_focus" href="">美味豆干</a></li>
+					<li><a href="">笋菌海带</a></li>
+					<li><a href="">其他山珍</a></li>	
+				</ul>
+				<a href="" class="more_shop">更多商品></a>
+			</div>
+			<ul class="one_floor_ul">
+				<li><a href=""><img src="images/img_index/4F.jpg" alt=""></a></li>
+				<li><a href=""><img src="images/img_index/4F_aside.jpg" alt=""></a></li>
+				<li>
+					<ul class="third_shop_list">
+						<li>
+							<a href=""><img src="images/img_index/list_4_01.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">【良品铺子】蛋白素肉麻辣味 200g</a>
+								<span class="shop_list_price">
+									<small>￥</small>6.<small>90</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+							<a href=""><img src="images/img_index/list_4_02.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">Q爽豆干（麻辣味）188g</a>
+								<span class="shop_list_price">
+									<small>￥</small>7.<small>50</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+							<a href=""><img src="images/img_index/list_4_03.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">鱼豆腐香辣味 170g</a>
+								<span class="shop_list_price">
+									<small>￥</small>9.<small>90</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+							<a href=""><img src="images/img_index/list_4_04.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">千页豆腐（麻辣味）（200g）</a>
+								<span class="shop_list_price">
+									<small>￥</small>8.<small>28</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+							<a href=""><img src="images/img_index/list_4_04.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">鸡蛋干酱香味 158g</a>
+								<span class="shop_list_price">
+									<small>￥</small>9.<small>90</small>
+								</span>
+							</div>
+						</li>							
+						<li></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<!--5F-->
+		<div class="one_floor">
+			<div class="active_tit_floor">
+				<h3  class="shop_tit_floor"><span>5F</span>糕点糖果</h3>
+				<ul class="active_list_floor">
+					<li><a  id="active_list_floor_focus" href="">糕点系列</a></li>
+					<li><a href="">饼干系列</a></li>
+					<li><a href="">糖果系列</a></li>	
+				</ul>
+				<a href="" class="more_shop">更多商品></a>
+			</div>
+			<ul class="one_floor_ul">
+				<li><a href=""><img src="images/img_index/5F.jpg" alt=""></a></li>
+				<li><a href=""><img src="images/img_index/5F_aside.jpg" alt=""></a></li>
+				<li>
+					<ul class="third_shop_list">
+						<li>
+							<a href=""><img src="images/img_index/list_5_01.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">小馒头（胡萝卜味）60g</a>
+								<span class="shop_list_price">
+									<small>￥</small>5.<small>90</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+							<a href=""><img src="images/img_index/list_5_02.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">丽芝士纳宝帝奶酪威化饼干 200g</a>
+								<span class="shop_list_price">
+									<small>￥</small>14.<small>90</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+							<a href=""><img src="images/img_index/list_5_03.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">手撕面包（电商专供）330g</a>
+								<span class="shop_list_price">
+									<small>￥</small>9.<small>90</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+							<a href=""><img src="images/img_index/list_5_04.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">榛子小酥165g</a>
+								<span class="shop_list_price">
+									<small>￥</small>11.<small>90</small>
+								</span>
+							</div>
+						</li>	
+						<li></li>							
+						<li></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<!--6F-->
+		<div class="one_floor">
+			<div class="active_tit_floor">
+				<h3  class="shop_tit_floor"><span>6F</span>进口食品</h3>
+				<ul class="active_list_floor">
+					<li><a  id="active_list_floor_focus" href="">进口糕点</a></li>
+					<li><a href="">进口糖果</a></li>
+					<li><a href="">休闲零食</a></li>	
+				</ul>
+				<a href="" class="more_shop">更多商品></a>
+			</div>
+			<ul class="one_floor_ul">
+				<li><a href=""><img src="images/img_index/6F.jpg" alt=""></a></li>
+				<li><a href=""><img src="images/img_index/6F_aside.jpg" alt=""></a></li>
+				<li>
+					<ul class="third_shop_list">
+						<li>
+							<a href=""><img src="images/img_index/list_6_01.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">Tipo牛奶味奶蛋酥脆面包干(新老包装切换中)</a>
+								<span class="shop_list_price">
+									<small>￥</small>9.<small>90</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+							<a href=""><img src="images/img_index/list_6_02.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">养养牌冬荫功面(酸辣虾味浓汤面)</a>
+								<span class="shop_list_price">
+									<small>￥</small>18.<small>90</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+							<a href=""><img src="images/img_index/list_6_03.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">CZA燕麦芝士酥 100g</a>
+								<span class="shop_list_price">
+									<small>￥</small>9.<small>90</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+							<a href=""><img src="images/img_index/list_6_04.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">CZA咸蛋黄酥 100g</a>
+								<span class="shop_list_price">
+									<small>￥</small>17.<small>80</small>
+								</span>
+							</div>
+						</li>	
+						<li>
+							<a href=""><img src="images/img_index/list_6_05.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">南益柠檬口味威化饼干</a>
+								<span class="shop_list_price">
+									<small>￥</small>15.<small>90</small>
+								</span>
+							</div>
+						</li>							
+						<li>
+							<a href=""><img src="images/img_index/list_6_06.jpg" alt=""></a>
+							<div class="shop_list_mask">
+								<a href="">啪啪通虾片（冬阴功味）40g</a>
+								<span class="shop_list_price">
+									<small>￥</small>9.<small>00</small>
+								</span>
+							</div>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>		
 	</div>
+	<!-- 良品手机商城 -->
+	<div class="phone_buy">
+		<h3>良品手机商城</h3>
+		<ul>
+			<li>
+				 <p>良品铺子美食旅行</p>
+				 <img src="images/img_index/recom_code.jpg" alt="良品铺子微信商城">
+			</li>
+			<li>
+				 <p>良品铺子微信商城</p>
+				 <img src="images/img_index/recom_code.jpg" alt="良品铺子微信商城">
+			</li>
+			<li>
+				<p>良品微博</p>
+				<div class="weibo">
+					
+				</div>
+			</li>
+		</ul>
+	</div>
+	<!-- footer -->
+	<div class="footer">
+		<div class="foot_service">
+			<ul>
+				<li>
+					<em>100%</em>
+					<p>正品保证</p>
+				</li>
+				<li>
+					<em>10天</em>
+					<p>无理由退换货</p>
+				</li>
+				<li>
+					<em>满68元</em>
+					<p>全场包邮</p>
+				</li>
+				<li>
+					<em>积分抵现金</em>
+					<p>100积分=1元</p>
+				</li>
+				<li>
+					<em>开箱验货</em>
+					<p>先验货再签收</p>
+				</li>
+				<li>
+					<em>多仓就近发货</em>
+					<p>快速直达</p>
+				</li>
+			</ul>
+		</div>
+		<div class="foot_area">
+			<div class="foot_cont">
+				<div class="fc_contact">
+					<div class="ctt_icon">
+						热线
+					</div>
+					<div class="ctt_txt">
+						<p>
+							<strong>400-1177-517</strong>
+						</p>
+						<p>
+							良品铺子客服热线<br/>
+							周一至周日：9:00-22:00
+						</p>
+						<p>
+							招商热线<br/>
+							400-1177-517
+						</p>
+					</div>
+				</div>
+				<div class="fc_link">
+					<dl>
+						<dt><strong>购物指南</strong></dt>
+						<dd>
+							<a href="">安全账户</a>
+							<a href="">购物流程</a>
+							<a href="">老顾客重置密码</a>
+							<a href="">生日礼物流程</a>
+							<a href="">找回密码</a>
+						</dd>
+					</dl>
+					<dl>
+						<dt><strong>物流配送</strong></dt>
+						<dd>
+							<a href="">配送说明</a>
+							<a href="">签收与验货</a>
+						</dd>
+					</dl>
+					<dl>
+						<dt><strong>付款说明</strong></dt>
+						<dd>
+							<a href="">发票制度</a>
+							<a href="">公司转账</a>
+							<a href="">在线支付</a>
+						</dd>
+					</dl>
+					<dl>
+						<dt><strong>客户服务</strong></dt>
+						<dd>
+							<a href="">退换货服务</a>
+							<a href="">联系我们</a>
+							<a href="">退款说明</a>
+						</dd>
+					</dl>
+					<dl>
+						<dt><strong>会员专区</strong></dt>
+						<dd>
+							<a href="">优惠券使用规则</a>
+							<a href="">积分制度</a>
+							<a href="">会员须知</a>
+						</dd>
+					</dl>
+				</div>
+				<div class="fc_follow">
+					<div class="qr_code">
+						<img src="images/img_index/dz_qrcode.jpg" alt="">
+						<span>微信二维码</span>
+					</div>
+					<div class="weibo_mail">
+						
+					</div>
+				</div>
+			</div>
+			<div class="foot_nav">
+				<ul>
+					<li><a href="">关于我们</a></li>
+					<li><a href="">联系我们</a></li>
+					<li><a href="">客户服务</a></li>
+					<li><a href="">诚聘英才</a></li>
+					<li><a href="">商务合作</a></li>
+					<li><a href="">媒体报道</a></li>
+					<li><a href="">网站地图</a></li>
+					<li><a href="">站长招募</a></li>
+				</ul>
+			</div>
+			<div class="foot_copyright">
+				Copyright@2006-2017 湖北良品铺子电子商务有限公司 All rights Reserved<br/>
+				<a href="">鄂ICP备15022981号</a><br/>
+				<a href="">
+					<img src="images/img_index/gslogo.png" alt="">
+				</a>
 
-
+			</div>
+		</div>
+	</div>
+	<!-- 右侧边栏 -->
+	<div class="right_navbar">
+		<ul class="rnb_list">
+			<li class="kf">
+				<a href="" class="hvr">
+					<span>客服咨询</span>
+					<i class="icon"></i>
+				</a>
+			</li>
+			<li class="gw">
+				<a href="">
+					<i class="icon"></i>
+					<span>购物车</span>
+					<small class="sum">0</small>
+				</a>
+			</li>
+			<li class="hy">
+				<a href="" class="hvr">
+					<span>会员中心</span>
+					<i class="icon"></i>
+				</a>
+			</li>
+			<li class="yh">
+				<a href="" class="hvr">
+					<span>我的优惠券</span>
+					<i class="icon"></i>
+				</a>
+			</li>
+			<li class="sc">
+				<a href="" class="hvr">
+					<span>我的关注</span>
+					<i class="icon"></i>
+				</a>
+			</li>
+		</ul>
+		<ul class="rnb_link">
+			<li class="qr" id="qr_cust">
+				<a href="">
+					<i class="icon"></i>
+					<div class="cust" id="qr_cust_display">
+						<img src="images/img_index/dz_qrcode.jpg" alt="">
+					</div>
+				</a>
+			</li>
+			<li class="goback">
+				<a href="" class="hvr">
+					<span>返回顶部</span>
+					<i class="icon"></i>
+				</a>
+			</li>
+		</ul>
+	</div>
     <script type="text/javascript" src="js/swiper.js"></script>
     <script type="text/javascript">
 		window.onload=function(){
@@ -203,3 +817,17 @@
 	</script>
 </body>
 </html>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/public.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#qr_cust").mouseenter(function(){
+		$("#qr_cust_display").animate({display:"block"},100);
+		$("#qr_cust_display").animate({opacity:"1"},500);
+	});
+	$("#qr_cust").mouseleave(function(){
+		$("#qr_cust_display").animate({opacity:"0"},500);
+		$("#qr_cust_display").animate({display:"none"},100);
+	});
+});
+</script>
