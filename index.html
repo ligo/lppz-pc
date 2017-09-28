@@ -789,7 +789,7 @@
 				</a>
 			</li>
 			<li class="goback">
-				<a href="" class="hvr">
+				<a href="javascript:void(0)" class="hvr">
 					<span>返回顶部</span>
 					<i class="icon"></i>
 				</a>
@@ -801,37 +801,37 @@
 		<span class="fn_tit">商品分类</span>
 		<ul class="fn_list">
 			<li class="floor_nav_01">
-				<a href="#first_floor">
+				<a href="javascript:void(0)" name="#first_floor">
 					<i></i>
 					<span>坚果炒货</span>
 				</a>
 			</li>
 			<li class="floor_nav_02">
-				<a href="#second_floor">
+				<a href="javascript:void(0)" name="#second_floor">
 					<i></i>
 					<span>肉脯鱼干</span>
 				</a>
 			</li>
 			<li class="floor_nav_03">
-				<a href="#three_floor">
+				<a href="javascript:void(0)" name="#three_floor">
 					<i></i>
 					<span>果干果脯</span>
 				</a>
 			</li>
 			<li class="floor_nav_04">
-				<a href="#four_floor">
+				<a href="javascript:void(0)" name="#four_floor">
 					<i></i>
 					<span>素食山珍</span>
 				</a>
 			</li>
 			<li class="floor_nav_05">
-				<a href="#five_floor">
+				<a href="javascript:void(0)" name="#five_floor">
 					<i></i>
 					<span>糕点糖果</span>
 				</a>
 			</li>
 			<li class="floor_nav_06">
-				<a href="#six_floor">
+				<a href="javascript:void(0)" name="#six_floor">
 					<i></i>
 					<span>进口食品</span>
 				</a>
@@ -864,18 +864,15 @@
 <script type="text/javascript" src="js/public.js"></script>
 <script type="text/javascript">
 $(function(){
+
 	//右侧边栏下面二维码的显示与隐藏
-	$("#qr_cust").mouseenter(function(){
-		if($("#qr_cust_display").css("display")=="none"){
-			$("#qr_cust_display").fadeIn(300);
-		}
-	});
-	$("#qr_cust").mouseleave(function(){
-		if($("#qr_cust_display").css("display")=="block"){
-			$("#qr_cust_display").fadeOut(300);
-		}
-		
-	});
+	makeHideAndShow($("#qr_cust"),$("#qr_cust_display"));
+	//我的良品显示隐藏
+	makeHideAndShow($(".myInfo_li"),$(".myInfo_hover"),200);
+	//关注良品显示隐藏
+	makeHideAndShow($(".attention_li"),$(".attention"),200);
+	//购物车显示隐藏
+	makeHideAndShow($(".main_buy"),$(".buy_show"),200);
 
 	//左侧边栏显示与隐藏
 	setInterval(function(){
@@ -885,8 +882,34 @@ $(function(){
 			$("#aside_left_nav").fadeOut(500);
 		}
 	},500);
-
-	let $left_lis=$(".fn_list").children();
 	
+	//左侧边栏按钮点击的滑动效果
+	let $left_lis=$(".fn_list").children();
+	$left_lis.each(function(){
+		$(this).click(function(){
+			$('html,body').animate({"scrollTop":$($(this).children().attr("name")).offset().top},500);
+		}); 
+	});
+
+	//返回顶部按钮
+	$(".goback").click(function(){
+			$('html,body').animate({"scrollTop":0},500);
+		}); 
+
 });
+
+//显示与隐藏
+let makeHideAndShow = function(source,target,timeSpace=200){
+	source.mouseenter(function(){
+		if(target.css("display")=="none"){
+			target.fadeIn(timeSpace);
+		}
+	});
+	source.mouseleave(function(){
+		if(target.css("display")=="block"){
+			target.fadeOut(timeSpace);
+		}	
+	});
+}
+
 </script>

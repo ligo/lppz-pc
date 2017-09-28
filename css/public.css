@@ -171,9 +171,6 @@ html,body,div,p,ul,li,ol,dl,dt,dd,table,tr,td,th,form,fieldset,legend,h1,h2,h3,h
 		background:url("../images/img_index/arrow_down.png") no-repeat center center;
 		transition: transform 0.1s ease-in 0s;
 	}
-	.myInfo_li:hover .myInfo_hover{
-		display: block;
-	}
 	.myInfo_li:hover .arrow{
 		transform: rotate(-180deg);
 	}
@@ -181,9 +178,6 @@ html,body,div,p,ul,li,ol,dl,dt,dd,table,tr,td,th,form,fieldset,legend,h1,h2,h3,h
 /*关注良品STERT*/
 	.attention_li{
 		position: relative;
-	}
-	.attention_li:hover .attention{
-		display: block;
 	}
 	.attention{
 		display: none;
@@ -353,9 +347,6 @@ html,body,div,p,ul,li,ol,dl,dt,dd,table,tr,td,th,form,fieldset,legend,h1,h2,h3,h
 		margin-top: 47px;
 		position: relative;
 	}
-	.main_buy:hover .buy_show{
-		display: block;
-	}
 	.main_buy .buy_show{
 		position: absolute;
 		width:330px;
@@ -401,11 +392,6 @@ html,body,div,p,ul,li,ol,dl,dt,dd,table,tr,td,th,form,fieldset,legend,h1,h2,h3,h
 	.buy_right>a:hover{
 		text-decoration: underline;
 	}
-
-
-
-
-
 
 	.main_buy>a{
 		display: block;
@@ -664,5 +650,168 @@ html,body,div,p,ul,li,ol,dl,dt,dd,table,tr,td,th,form,fieldset,legend,h1,h2,h3,h
 		display: block;
 	}
 	
+	/*footer*/
+	.footer{
+		width: 100%;
+		margin-top: 20px;
+		font-family: "Microsoft YaHei";
+		background: #f5f5f5;
+	}
+	.foot_service{
+		border-bottom: 1px solid #fdfdfd;
+		background:#fff;
+	}
+	.foot_service ul{
+		width: 1150px;
+		margin:0 auto;
+		padding: 20px 0 20px 50px;
+		overflow: hidden;
+	}
+	.foot_service ul li{
+		float: left;
+		width: 150px;
+		line-height: 20px;
+		font-size: 16px;
+		padding-left: 40px;
+		background:url(../images/img_index/get_icon.png) 0 -180px no-repeat;
+	}
+	.foot_service ul li:nth-child(1){
+		background-position: 0 -180px;
+	}
+	.foot_service ul li:nth-child(2){
+		background-position: 0 -228px;
+	}
+	.foot_service ul li:nth-child(3){
+		background-position: 0 -277px;
+	}
+	.foot_service ul li:nth-child(4){
+		background-position: 0 -327px;
+	}
+	.foot_service ul li:nth-child(5){
+		background-position: 0 -373px;
+	}
+	.foot_service ul li:nth-child(6){
+		background-position: 0 -425px;
+	}
+	.foot_service ul li em{
+		color: #333;
+		font-style: normal;
+	}
+	.foot_service ul li p{
+		color:#777;
+	}
+	/*foot_area*/
+	.foot_area{
+		width:1200px;
+		margin:0 auto;
+	}
+	.foot_cont{
+		padding:15px 0px 5px 35px;
+		overflow: hidden;
+	}
+	.fc_contact{
+		float: left;
+		width: 240px;
+	}
+	.ctt_icon{
+		float: left;
+		width: 16px;
+		height: 16px;
+		margin-top: 10px;
+		text-indent: -999px;
+		overflow: hidden;
+		background:url(../images/img_index/get_icon.png) 0 0 no-repeat;
+	}
+	.ctt_txt{
+		margin-left: 30px;
+	}
+	.ctt_txt p{
+		font-size: 14px;
+		padding: 5px 0;
+		color: #8a8a8a;
+	}
+	.ctt_txt strong{
+		font-size: 16px;
+		color: #555;
+	}
+	.fc_link{
+		float: left;
+		padding-left: 40px;
+	}
+	.fc_link dl{
+		float: left;
+		width: 120px;
+	}
+	.fc_link dl dt{
+		line-height: 40px;
+		font-size: 14px;
+		color: #555;
+	}
+	.fc_link dl dd a{
+		display: block;
+		height: 22px;
+		line-height: 22px;
+		color: #666;
+		font-size: 12px;
+	}
+	.fc_link dl dd a:hover{
+		text-decoration: underline;
+	}
+	.fc_follow{
+		float: right;
+		width:200px;
+	}
+	.fc_follow .qr_code{
+		float: left;
+		width: 130px;
+		overflow: hidden;
+	}
+	.fc_follow .qr_code img{
+		display: block;
+		width: 130px;
+		height: 150px;
+	}
+	.fc_follow .qr_code span{
+		display: block;
+		height: 25px;
+		line-height: 25px;
+		font-size: 13px;
+		text-align: center;
 
-
+	}
+	/*foot_nav*/
+	.foot_nav{
+		text-align: center;
+	}
+	.foot_nav ul{
+		display: inline-block;
+	}
+	.foot_nav ul li{
+		float: left;
+		
+	}
+	.foot_nav ul li a{
+		padding: 0 20px;
+		color: #555;
+		font-size: 12px;
+		border-right: 1px solid #A4BEE3;
+	}
+	.foot_nav ul li a:hover{
+		color: #e60012;
+   		text-decoration: underline;
+	}
+	.foot_nav ul li:last-child a{
+		border:none;
+	}
+	/*foot_copyright*/
+	.foot_copyright{
+		text-align: center;
+		padding:20px 0;
+		color: #777;
+	}
+	.foot_copyright a{
+		color: #777;
+	} 
+	.foot_copyright a:hover{
+		text-decoration: underline;
+	}

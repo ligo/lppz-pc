@@ -192,6 +192,29 @@
         -webkit-align-items: center;
         align-items: center;
     }
+    .swiper-button-prev{
+    	width:68px;
+    	height: 68px;
+    	border-radius: 50%;
+    	background:url(../images/img_index/banner_arrow.png) -10px 0px no-repeat;
+    	transition: background 0.5s;
+    	margin-top: -45px;
+    }
+    .swiper-button-next{
+    	width:68px;
+    	height: 68px;
+    	border-radius: 50%;
+    	background:url(../images/img_index/banner_arrow.png) -96px 0px no-repeat;
+    	transition: background 0.5s;
+    	margin-top: -45px;
+    }
+    .swiper-button-prev:hover{
+    	background:url(../images/img_index/banner_arrow_hover.png) -10px 0px no-repeat;
+    }
+    .swiper-button-next:hover{
+    	background:url(../images/img_index/banner_arrow_hover.png) -96px 0px no-repeat;
+    }
+
     .swiper-pagination-bullet {
         width: 25px;
         height: 25px;
