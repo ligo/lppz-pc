@@ -183,7 +183,7 @@
 			</li>
 		</ul>
 		<!-- 活动 -->
-		<div class="shop_active">
+		<div class="shop_active" id="active_target">
 			<div class="active_tit clear_float">
 				<h3  class="shop_tit">活动精选</h3>
 				<ul class="active_list">
@@ -201,7 +201,7 @@
 			</ul>
 		</div>
 		<!-- 1F -->
-		<div class="one_floor">
+		<div class="one_floor" id="first_floor">
 			<div class="active_tit_floor">
 				<h3  class="shop_tit_floor"><span>1F</span>坚果炒货</h3>
 				<ul class="active_list_floor">
@@ -267,7 +267,7 @@
 			</ul>
 		</div>
 		<!--2F-->
-		<div class="one_floor">
+		<div class="one_floor" id="second_floor">
 			<div class="active_tit_floor">
 				<h3  class="shop_tit_floor"><span>2F</span>肉脯鱼干</h3>
 				<ul class="active_list_floor">
@@ -327,7 +327,7 @@
 			</ul>
 		</div>
 		<!--3F-->
-		<div class="one_floor">
+		<div class="one_floor" id="three_floor">
 			<div class="active_tit_floor">
 				<h3  class="shop_tit_floor"><span>3F</span>果干果脯</h3>
 				<ul class="active_list_floor">
@@ -401,7 +401,7 @@
 			</ul>
 		</div>
 		<!--4F-->
-		<div class="one_floor">
+		<div class="one_floor" id="four_floor">
 			<div class="active_tit_floor">
 				<h3  class="shop_tit_floor"><span>4F</span>素食山珍</h3>
 				<ul class="active_list_floor">
@@ -467,7 +467,7 @@
 			</ul>
 		</div>
 		<!--5F-->
-		<div class="one_floor">
+		<div class="one_floor" id="five_floor">
 			<div class="active_tit_floor">
 				<h3  class="shop_tit_floor"><span>5F</span>糕点糖果</h3>
 				<ul class="active_list_floor">
@@ -525,7 +525,7 @@
 			</ul>
 		</div>
 		<!--6F-->
-		<div class="one_floor">
+		<div class="one_floor" id="six_floor">
 			<div class="active_tit_floor">
 				<h3  class="shop_tit_floor"><span>6F</span>进口食品</h3>
 				<ul class="active_list_floor">
@@ -796,6 +796,49 @@
 			</li>
 		</ul>
 	</div>
+<!-- 左侧边栏 -->
+	<div class="floor_nav" id="aside_left_nav">
+		<span class="fn_tit">商品分类</span>
+		<ul class="fn_list">
+			<li class="floor_nav_01">
+				<a href="#first_floor">
+					<i></i>
+					<span>坚果炒货</span>
+				</a>
+			</li>
+			<li class="floor_nav_02">
+				<a href="#second_floor">
+					<i></i>
+					<span>肉脯鱼干</span>
+				</a>
+			</li>
+			<li class="floor_nav_03">
+				<a href="#three_floor">
+					<i></i>
+					<span>果干果脯</span>
+				</a>
+			</li>
+			<li class="floor_nav_04">
+				<a href="#four_floor">
+					<i></i>
+					<span>素食山珍</span>
+				</a>
+			</li>
+			<li class="floor_nav_05">
+				<a href="#five_floor">
+					<i></i>
+					<span>糕点糖果</span>
+				</a>
+			</li>
+			<li class="floor_nav_06">
+				<a href="#six_floor">
+					<i></i>
+					<span>进口食品</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+
     <script type="text/javascript" src="js/swiper.js"></script>
     <script type="text/javascript">
 		window.onload=function(){
@@ -821,13 +864,29 @@
 <script type="text/javascript" src="js/public.js"></script>
 <script type="text/javascript">
 $(function(){
+	//右侧边栏下面二维码的显示与隐藏
 	$("#qr_cust").mouseenter(function(){
-		$("#qr_cust_display").animate({display:"block"},100);
-		$("#qr_cust_display").animate({opacity:"1"},500);
+		if($("#qr_cust_display").css("display")=="none"){
+			$("#qr_cust_display").fadeIn(300);
+		}
 	});
 	$("#qr_cust").mouseleave(function(){
-		$("#qr_cust_display").animate({opacity:"0"},500);
-		$("#qr_cust_display").animate({display:"none"},100);
+		if($("#qr_cust_display").css("display")=="block"){
+			$("#qr_cust_display").fadeOut(300);
+		}
+		
 	});
+
+	//左侧边栏显示与隐藏
+	setInterval(function(){
+		if(	$(window).scrollTop()>=$("#active_target").offset().top){
+			$("#aside_left_nav").fadeIn(500);
+		}else{	
+			$("#aside_left_nav").fadeOut(500);
+		}
+	},500);
+
+	let $left_lis=$(".fn_list").children();
+	
 });
 </script>
