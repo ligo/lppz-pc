@@ -123,8 +123,12 @@
 						商品分类<i class="icon"></i>
 					</a>
 					<ul class="menu_list">
-						<li><a href=""><i></i>坚果炒货</a></li>
-						<li><a href=""><i></i>肉脯鱼干</a></li>
+						<li>
+							<a href=""><i></i>坚果炒货</a>
+						</li>
+						<li>
+							<a href=""><i></i>肉脯鱼干</a>
+						</li>
 						<li><a href=""><i></i>果干果脯</a></li>
 						<li><a href=""><i></i>糕点糖果</a></li>
 						<li><a href=""><i></i>素食山珍</a></li>
@@ -133,6 +137,9 @@
 						<li><a href=""><i></i>精选礼盒</a></li>
 						<li><a href=""><i></i>当季热销</a></li>
 					</ul>
+					<div class="menu_show">
+						
+					</div>
 				</div>
 			</div>
 			
@@ -714,11 +721,14 @@
 				</div>
 				<div class="fc_follow">
 					<div class="qr_code">
-						<img src="images/img_index/dz_qrcode.jpg" alt="">
+						<div class="qr_code_top">
+							<img src="images/img_index/dz_qrcode.jpg" alt="">
+						</div>						
 						<span>微信二维码</span>
 					</div>
 					<div class="weibo_mail">
-						
+							<p>微博关注</p>
+							<iframe src="http://widget.weibo.com/relationship/followbutton.php?btn=red&style=2&uid=1851770484&width=136&height=24&language=zh_cn" width="136" height="24" scrolling="no" frameborder="0"></iframe>
 					</div>
 				</div>
 			</div>
@@ -864,40 +874,14 @@
 <script type="text/javascript" src="js/public.js"></script>
 <script type="text/javascript">
 $(function(){
-
-	//右侧边栏下面二维码的显示与隐藏
-	makeHideAndShow($("#qr_cust"),$("#qr_cust_display"));
-	//我的良品显示隐藏
-	makeHideAndShow($(".myInfo_li"),$(".myInfo_hover"),200);
-	//关注良品显示隐藏
-	makeHideAndShow($(".attention_li"),$(".attention"),200);
-	//购物车显示隐藏
-	makeHideAndShow($(".main_buy"),$(".buy_show"),200);
-
-	//左侧边栏显示与隐藏
-	setInterval(function(){
-		if(	$(window).scrollTop()>=$("#active_target").offset().top){
-			$("#aside_left_nav").fadeIn(500);
-		}else{	
-			$("#aside_left_nav").fadeOut(500);
-		}
-	},500);
-	
-	//左侧边栏按钮点击的滑动效果
-	let $left_lis=$(".fn_list").children();
-	$left_lis.each(function(){
-		$(this).click(function(){
-			$('html,body').animate({"scrollTop":$($(this).children().attr("name")).offset().top},500);
-		}); 
-	});
-
-	//返回顶部按钮
-	$(".goback").click(function(){
-			$('html,body').animate({"scrollTop":0},500);
-		}); 
-
+	InitUI();
+	MenuEvent();
 });
-
+// ------------------------------Tools↓-------------------------
+//创建Dom元素
+function $create(str){
+	return document.createElement(str);
+}
 //显示与隐藏
 let makeHideAndShow = function(source,target,timeSpace=200){
 	source.mouseenter(function(){
@@ -911,5 +895,68 @@ let makeHideAndShow = function(source,target,timeSpace=200){
 		}	
 	});
 }
+// ------------------------------Tools↑-------------------------
 
+function InitUI(){
+	//右侧边栏下面二维码的显示与隐藏
+	makeHideAndShow($("#qr_cust"),$("#qr_cust_display"));
+	//我的良品显示隐藏
+	makeHideAndShow($(".myInfo_li"),$(".myInfo_hover"),200);
+	//关注良品显示隐藏
+	makeHideAndShow($(".attention_li"),$(".attention"),200);
+	//购物车显示隐藏
+	makeHideAndShow($(".main_buy"),$(".buy_show"),200);
+	//左侧边栏显示与隐藏
+	setInterval(function(){
+		if(	$(window).scrollTop()>=$("#active_target").offset().top){
+			$("#aside_left_nav").fadeIn(500);
+		}else{	
+			$("#aside_left_nav").fadeOut(500);
+		}
+	},500);
+	//左侧边栏按钮点击的滑动效果
+	let $left_lis=$(".fn_list").children();
+	$left_lis.each(function(){
+		$(this).click(function(){
+			$('html,body').animate({"scrollTop":$($(this).children().attr("name")).offset().top},500);
+		}); 
+	});
+	//返回顶部按钮
+	$(".goback").click(function(){
+			$('html,body').animate({"scrollTop":0},500);
+	}); 
+}
+
+function MenuEvent(){
+	let menu_text=[
+		["嗑壳坚果","果果仁仁","特惠炒货"],
+		["猪肉系列","牛肉系列","鸡鸭系列","海味系列"],
+		["缤纷果干","话梅山楂","红枣葡萄"],
+		["糕点系列","饼干系列","糖果系列","果冻系列"],
+		["美味豆干","笋菌海带","其他山珍"],
+		["养生冲调","进口饮料"],
+		["进口糕点","进口糖果","休闲零食"],
+		["零食礼盒","年货量贩装"]
+	];
+	let menu_lis=$(".menu_list").children(); //所有菜单item的jq对象
+	let menu_show_dom=	$(".menu_show")[0];	 //右侧显示div的dom节点
+	for(let i=0;i<menu_lis.length-1;i++){
+		$(menu_lis[i]).mouseenter(function(){
+			for(let j=0;j<menu_text[i].length;j++){
+				let domDiv = $create("div");
+				domDiv.className="menu_item";
+				let domA = $create("a");
+				domA.innerText=menu_text[i][j];
+				domDiv.appendChild(domA);
+				menu_show_dom.appendChild(domDiv);
+			}
+			menu_lis[i].appendChild(menu_show_dom);
+			menu_show_dom.style.display="block";
+		});
+		$(menu_lis[i]).mouseleave(function(){
+			$(menu_show_dom).empty();//清空
+			menu_show_dom.style.display="none";
+		});
+	}
+}
 </script>
