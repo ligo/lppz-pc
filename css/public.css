@@ -54,7 +54,7 @@ html,body,div,p,ul,li,ol,dl,dt,dd,table,tr,td,th,form,fieldset,legend,h1,h2,h3,h
 	}
 	.toolbar_content_left li:nth-child(n+4) a{
 		display: block;
-		text-indent: -999px;
+		text-indent: -9999px;
 		margin-top: 4px;
 	}
 	/*登录*/

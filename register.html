@@ -2,19 +2,20 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>良品铺子商城-用户登录</title>
+	<title>良品铺子商城-用户注册</title>
 	<meta name="description" content="良品铺子LPPZ.COM-专业的休闲食品网上购物商城，在线销售肉脯鱼干、果干果脯、糕点糖果、素食山珍、茶水饮料、进口食品、礼盒等数百种优质食品。便捷、诚信的服务，为您提供愉悦的休闲食品网上购物体验! ">
 	<meta name="Keywords" content="网上商城,休闲零食，美食，牛肉干，鱼干，果干果脯，糕点糖果，素食山珍，茶水饮料，进口食品，礼盒，良品铺子">
 </head>
 <link rel="stylesheet" href="css/public.css" />
 <link rel="stylesheet" href="css/login.css" />
+<link rel="stylesheet" href="css/register.css" />
 <body>
 	<!-- toolbar -->
 	<div class="toolbar">
 		<div class="toolbar_content wide">
 			<ul class="toolbar_content_left">
-				<li><span>您好，</span>欢迎来到良品铺子官方商城！</li>
-				<li><a href=""></a></li>
+				<li>欢迎来到良品铺子官方商城！</li>
+				<li><a href="login.html">[登录]</a></li>
 				<li><a href="register.html">[注册]</a></li>
 				<li><a href="">支付宝快捷登录</a></li>
 				<li><a href="">qq登录</a></li>
@@ -54,41 +55,49 @@
 		<a href="index.html" title="良品铺子" >
 			<img src="images/img_login/logo.png" alt="" />
 		</a>
-		<h1>欢迎登录</h1>
+		<h1>欢迎注册</h1>
 	</div>
 	<!--login-->	
 	<div class="login clear_float">
 		<div class="login_left">
-			<img src="images/img_login/ad.png" alt="" />
+			<img src="images/img_register/ad2.jpg" alt="" />
 		</div>
 		<div class="login_right">
 			<div class="tit">
-				<h3>会员登录</h3>
-				<p>新用户，<a href="">免费注册&gt</a></p>
+				<h3>用户注册</h3>
+				<p>已有账户，<a href="">在此登录&gt</a></p>
 			</div>
-			<p>用户名/邮箱/手机号</p>
-			<input type="text" />
-			<p>密码</p>
-			<input type="password" />
-			<a href="" class="forget_pwd">忘记密码？</a>
-			<a href="">已有会员卡，我要激活</a>
-			<a href="" class="login_btn">登 录</a>
-			<div class="other_login clear_float">
-				<p>使用合作网站账号登录良品铺子：</p>
-				<ul class="toolbar_content_left">
-					<li></li>
-					<li></li>
-					<li></li>
-					<li><a href="">支付宝快捷登录</a></li>
-					<li><a href="">qq登录</a></li>
-					<li><a href="">微博登录</a></li>
-				</ul>
-			</div>
-			<div class="login_bottom_code">
-				<p>良品微信商城，手机专属享优惠</p>
-				<img src="images/img_login/code.png" alt="" class="login_bottom_code_pointer" />
-				<img src="images/img_index/dz_qrcode.jpg" class="login_bottom_code_pointer_img"/>
-			</div>
+			<ul class="reg_list">
+				<li>
+					<span><b>*</b>用户名：</span><input type="text" name="" id="" value="" class="username"/>
+				</li>
+				<li>
+					<span><b>*</b>密&nbsp;码：</span><input type="password" name="" id="" value="" class="password"/>
+				</li>
+				<li>
+					<span><b>*</b>确认密码：</span><input type="password" name="" id="" value="" class="password_repeat"/>
+				</li>
+				<li>
+					<span><b>*</b>手机号：</span><input type="tel" name="" id="" value="" class="phone_num"/>
+				</li>
+				<li>
+					<span><b>*</b>验证码：</span><input type="text" name="" id="" value="" class="verification_code"/>
+					<span class="verify">
+						<img src="images/img_login/verification_code.png"/>	
+					</span>
+					看不清？
+					<a href="" class="change_other_code">换一张</a>
+				</li>
+				<li>
+					<span><b>*</b>短信验证码：</span>
+					<input type="text" name="" id="" value="" class="message_verification_code"/>
+					<a href="">获取短信验证码</a>
+				</li>
+			</ul>
+			<div class="login_agree" >
+				<b>*</b><input type="checkbox" name="" id="" value="" /><span>我已阅读并同意<a href="">《良品铺子用户注册协议》</a></span>
+			</div>	
+			<a href="" class="login_btn">同意协议并注册</a>
 		</div>
 	</div>
 	<!-- footer -->
