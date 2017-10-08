@@ -509,5 +509,64 @@
 	.weibo{
 		width:100%;
 		height: 298px;
-		background:#fc9;
+		box-sizing: border-box;
+		border:1px solid #d2d2d2;
+		border-top: none;
+	}
+	.weiboTop{
+		padding:13px 0 15px;
+		border-bottom:1px solid #d2d2d2;
+	}
+	.weiboTop_pic{
+		float: left;
+		margin-left: 15px;
+		display: inline;
+	}
+	.weiboTop_pic a{
+		display: block;
+		width:50px;
+		height: 50px;
+	}	
+	.weiboTop_pic img{
+		width:100%;
+	}
+	.weiboTop_detail{
+		margin-left: 73px;
+	}
+	.weiboDetail_top{
+		height: 17px;
+		/*overflow: hidden;*/
+		margin-left: 2px;
+	}
+	.weiboDetail_top dt{
+		display: inline-block;
+	}
+	.weiboDetail_top dt a{
+		font-size: 14px;
+		line-height: 16px;
+		color: #0078b6;
+	}
+	.weiboDetail_top dt img{
+		width: 17px;
+	}
+	.weiboDetail_top dd{
+		display: inline-block;
+	}
+	.weiboDetail_top dd span{
+		color: #999;
+	}	
+	.weiboDetail_btn{
+		margin-top: 8px;
+		width: 64px;
+		height: 24px;
+		background: url(../images/img_index/follow_normal.png) no-repeat;
+	}
+	.weiboDetail_btn:hover{
+		cursor: pointer;
+		background: url(../images/img_index/follow_hover.png) no-repeat;;
+	}
+	.border_top{
+		width: 100%;
+		height: 2px;
+		background: -webkit-linear-gradient(left,#eb192d 0,#fdb940 100%);
 	}

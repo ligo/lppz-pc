@@ -15,6 +15,16 @@ html,body,div,p,ul,li,ol,dl,dt,dd,table,tr,td,th,form,fieldset,legend,h1,h2,h3,h
 	img{
 		border:0;
 	}
+		/*清除浮动*/
+	.clear_float:after{
+		display: block;
+		height: 0;
+		content:".";
+		visibility: hidden;
+		overflow: hidden;
+		clear: both;
+	}
+
 
 /*顶部条*/
 	.toolbar{
@@ -262,15 +272,6 @@ html,body,div,p,ul,li,ol,dl,dt,dd,table,tr,td,th,form,fieldset,legend,h1,h2,h3,h
 		margin-top: 6px;
 		background:url(../images/img_index/switch_img.png) -410px 0 no-repeat;
 	}
-	/*清除浮动*/
-	.clear_float:after{
-		display: block;
-		height: 0;
-		content:".";
-		visibility: hidden;
-		overflow: hidden;
-		clear: both;
-	}
 
 	/*header*/
 	.header{
@@ -322,16 +323,16 @@ html,body,div,p,ul,li,ol,dl,dt,dd,table,tr,td,th,form,fieldset,legend,h1,h2,h3,h
 	}
 
 	.search_bar{
-		width:421px;
+		width:390px;
 		border:1px solid #f15152;
 		border-top-left-radius: 15px;
 		border-bottom-left-radius: 15px;
 		height: 31px;
 		font-size: 12px;
 		color:#666666;
-		text-indent: 15px;
 		outline: none;
 		float: left;
+		padding:0 15px;
 	}
 	.search_btn{
 		float: left;
