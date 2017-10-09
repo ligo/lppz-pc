@@ -19,14 +19,19 @@ let makeHideAndShow = function(source,target,timeSpace=200){
 // ------------------------------Tools↑-------------------------
 
 function InitUI(){
-	//右侧边栏下面二维码的显示与隐藏
-	makeHideAndShow($("#qr_cust"),$("#qr_cust_display"));
+	InitTopUI();
+	InitLeftUI();
+	InitRightUI();
+}
+function InitTopUI(){
 	//我的良品显示隐藏
 	makeHideAndShow($(".myInfo_li"),$(".myInfo_hover"),200);
 	//关注良品显示隐藏
 	makeHideAndShow($(".attention_li"),$(".attention"),200);
 	//购物车显示隐藏
 	makeHideAndShow($(".main_buy"),$(".buy_show"),200);
+}
+function InitLeftUI(){
 	//左侧边栏显示与隐藏
 	setInterval(function(){
 		if(	$(window).scrollTop()>=$("#active_target").offset().top){
@@ -42,11 +47,16 @@ function InitUI(){
 			$('html,body').animate({"scrollTop":$($(this).children().attr("name")).offset().top},500);
 		}); 
 	});
+}
+function InitRightUI(){
+	//右侧边栏下面二维码的显示与隐藏
+	makeHideAndShow($("#qr_cust"),$("#qr_cust_display"));
 	//返回顶部按钮
 	$(".goback").click(function(){
 			$('html,body').animate({"scrollTop":0},500);
 	}); 
 }
+
 
 function MenuEvent(){
 	let menu_text=[
@@ -79,4 +89,4 @@ function MenuEvent(){
 			menu_show_dom.style.display="none";
 		});
 	}
-}
+}      
