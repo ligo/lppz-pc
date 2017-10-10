@@ -351,7 +351,6 @@ html,body,div,p,ul,li,ol,dl,dt,dd,table,tr,td,th,form,fieldset,legend,h1,h2,h3,h
 	.main_buy .buy_show{
 		position: absolute;
 		width:330px;
-		height: 100px;
 		border:1px solid #ddd;
 		z-index: 999;
 		left: -191px;
@@ -364,6 +363,7 @@ html,body,div,p,ul,li,ol,dl,dt,dd,table,tr,td,th,form,fieldset,legend,h1,h2,h3,h
 		line-height: 30px;
 		font-weight: bold;
 		border-bottom: 1px solid #ddd;
+		background:#FFFFFF;
 	}
 	.buy_show_bottom{
 		background:#eee;

@@ -70,6 +70,7 @@
 			<ul class="reg_list">
 				<li>
 					<span><b>*</b>用户名：</span><input type="text" name="" id="" value="" class="username"/>
+					<span class="reg_tip" title="请输入密码">请输入密码</span>
 				</li>
 				<li>
 					<span><b>*</b>密&nbsp;码：</span><input type="password" name="" id="" value="" class="password"/>
@@ -140,5 +141,14 @@ $(function(){
 			$(this).css("border","1px solid #ccc");
 		});
 	}
+	
+	let $inputs = $(".reg_list>li:nth-child(-n+6)>input");
+	//找到需要提示的li
+
+	for (let i in $inputs){
+//		$($inputs[i]).css("background-color","red");
+	}
 });
+
+
 </script>

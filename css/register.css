@@ -18,10 +18,16 @@
   width: 100%;
   line-height: 40px;
   padding: 13px 0;
-  overflow: hidden;
   display: block;
   color: #555; }
-
+.reg_list li:after{
+	  display: block;
+    height: 0;
+    line-height: 0;
+    clear: both;
+    visibility: hidden;
+    content: "";
+}
 .reg_list > li > span {
   float: left;
   display: block;
@@ -125,5 +131,19 @@
     border: 1px solid #aaa;
     background: #eee;
     text-decoration: none; }
-
+/*输入提示信息*/
+.reg_list .reg_tip{
+	position: absolute;
+	right: 0;
+	width:300px;
+	height: 20px;
+	line-height: 20px;
+	text-align: left;
+	text-indent: 10px;
+	top: 52px;
+	border:1px solid #dddddd;
+	background:#f6f6f6;
+	font-size: 12px;
+	color: #666666;
+}
 /*# sourceMappingURL=register.css.map */
