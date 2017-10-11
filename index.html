@@ -14,6 +14,7 @@
 	<!-- toolbar -->
 	<div class="toolbar">
 		<div class="toolbar_content wide">
+			<!--未登录的显示-->
 			<ul class="toolbar_content_left">
 				<li>欢迎来到良品铺子官方商城！</li>
 				<li><a href="login.html">[登录]<span></span></a></li>
@@ -22,6 +23,16 @@
 				<li><a href="">qq登录</a></li>
 				<li><a href="">微博登录</a></li>
 			</ul>
+			<!--登录的显示-->
+			<div class="toolbar_content_left_logined">
+				<p>
+					<span>您好</span>
+					<a href="" class="toolbar_username"></a>
+					<span>,</span>
+				</p>
+				<p>欢迎来到良品铺子官方商城！</p>
+				<a href="javascript:;" class="toolbar_quit">[退出]</a>
+			</div>
 			<ul class="toolbar_content_right">
 				<li class="myInfo_li">
 					<a href="" class="myInfo ">我的良品<i class="arrow"></i></a>
@@ -895,9 +906,31 @@
 </html>
 <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="js/public.js"></script>
+<script type="text/javascript" src="js/cookieTools.js"></script>
 <script type="text/javascript">
 $(function(){
 	InitUI();
 	MenuEvent();
+	let $no_login_style = $(".toolbar_content_left");
+	let $login_style = $(".toolbar_content_left_logined");
+
+	console.log(document.cookie);
+	console.log(document.cookie=="");
+	if(document.cookie==""){ //非登录
+		$no_login_style.css("display","block");
+		$login_style.css("display","none");
+	}else{
+		$no_login_style.css("display","none");
+		$login_style.css("display","block");
+		$(".toolbar_username").text(getCookie("userName"));
+		$(".toolbar_quit").click(function(){
+			removeCookie("userName");
+			$no_login_style.css("display","block");
+			$login_style.css("display","none");
+			location.href="login.html";
+			console.log("点击");
+//			addCookie("userName","roman"); //测试用
+		});
+	}
 });
 </script>

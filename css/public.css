@@ -37,11 +37,33 @@ html,body,div,p,ul,li,ol,dl,dt,dd,table,tr,td,th,form,fieldset,legend,h1,h2,h3,h
 		height: 29px;
 		margin:0 auto;
 	}
-	/*顶部登录块-左侧*/
+	/*顶部登录块-左侧-登录状态*/
+	.toolbar_content_left_logined{
+		height: 29px;
+		line-height: 29px;
+		float: left;
+	}
+	.toolbar_content_left_logined p{
+		float: left;
+		margin-right: 12px;
+	}
+	.toolbar_content_left_logined p span{
+		float: left;
+		margin:0 3px;
+	}
+	.toolbar_content_left_logined a{
+		float: left;
+		color:#ed4545;
+	}
+	.toolbar_content_left_logined a:hover{
+		text-decoration: underline;
+	}
+	/*顶部登录块-左侧-未登录状态*/
 	.toolbar_content_left{
 		height: 29px;
 		line-height: 29px;
 		float: left;
+		display:none;
 	}
 	.toolbar_content_left li{
 		float:left;

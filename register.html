@@ -70,16 +70,19 @@
 			<ul class="reg_list">
 				<li>
 					<span><b>*</b>用户名：</span><input type="text" name="" id="" value="" class="username"/>
-					<span class="reg_tip" title="请输入密码">请输入密码</span>
+					<span class='reg_tip'></span>
 				</li>
 				<li>
 					<span><b>*</b>密&nbsp;码：</span><input type="password" name="" id="" value="" class="password"/>
+					<span class='reg_tip'></span>
 				</li>
 				<li>
 					<span><b>*</b>确认密码：</span><input type="password" name="" id="" value="" class="password_repeat"/>
+					<span class='reg_tip'></span>
 				</li>
 				<li>
 					<span><b>*</b>手机号：</span><input type="tel" name="" id="" value="" class="phone_num"/>
+				<span class='reg_tip'></span>
 				</li>
 				<li>
 					<span><b>*</b>验证码：</span><input type="text" name="" id="" value="" class="verification_code"/>
@@ -88,17 +91,20 @@
 					</span>
 					看不清？
 					<a href="" class="change_other_code">换一张</a>
+					<span class='reg_tip'></span>
 				</li>
 				<li>
 					<span><b>*</b>短信验证码：</span>
 					<input type="text" name="" id="" value="" class="message_verification_code"/>
 					<a href="">获取短信验证码</a>
+					<span class='reg_tip'></span>
 				</li>
 			</ul>
 			<div class="login_agree" >
-				<b>*</b><input type="checkbox" name="" id="" value="" /><span>我已阅读并同意<a href="">《良品铺子用户注册协议》</a></span>
+				<b>*</b><input type="checkbox" checked class="agree_checked"/><span>我已阅读并同意<a href="">《良品铺子用户注册协议》</a></span>
+				<span class='reg_tip'></span>
 			</div>	
-			<a href="" class="login_btn">同意协议并注册</a>
+			<a href="javascript:;" class="login_btn">同意协议并注册</a>
 		</div>
 	</div>
 	<!-- footer -->
@@ -141,14 +147,241 @@ $(function(){
 			$(this).css("border","1px solid #ccc");
 		});
 	}
-	
+	//表单状态 0表示失败，1表示成功
+	let input_state = []; 
+	//找到所有要验证的input
 	let $inputs = $(".reg_list>li:nth-child(-n+6)>input");
-	//找到需要提示的li
-
-	for (let i in $inputs){
-//		$($inputs[i]).css("background-color","red");
+	//找到所有需要提示的li下的提示框
+	let $tipSpans = $(".reg_tip");
+	for(let i=0; i<$inputs.length; i++){
+		input_state[i]=0;
+		$($inputs[i]).focus(function(){
+			//默认都是不符合
+			input_state[i]=0;
+			//初始化边框和提示框的样式
+			$(this).css("border-color","#68B939");
+			$($tipSpans[i]).css({
+				"background":"#f6f6f6",
+				"border-color":"#DDDDDD",
+				"color":"#666666"
+			});
+			let textStr="";
+			let titleStr="";
+			switch(this.className){
+				case 'username':
+					textStr="4-20位字符，支持汉字、字母、数字";
+					titleStr='4-20位字符，支持汉字、字母、数字及 "-"、"_"组合';
+				break;
+				case 'password':
+					textStr="6-20位字符，由字母，数字和符号两种以上组合";
+					titleStr='6-20位字符，由字母，数字和符号两种以上组合';
+					break;
+				case 'password_repeat':
+					textStr="请再次输入密码";
+					titleStr='请再次输入密码';
+					break;
+				case 'phone_num':
+					textStr="请输入手机号";
+					titleStr='请输入手机号';
+					break;
+				case 'verification_code':
+					textStr="请输入验证码";
+					titleStr='请输入验证码';
+					break;
+				case 'message_verification_code':
+					textStr="请输入短信验证码";
+					titleStr='请输入短信验证码';
+					break;
+				default:;break;
+			}
+			$($tipSpans[i]).text(textStr);
+			$tipSpans[i].title=titleStr;
+			$($tipSpans[i]).css("display","block");
+		});
+		$($inputs[i]).blur(function(){
+			let tipMsg=""; //错误的提示信息
+			let inputStr = $(this).val(); //当前input的value
+			let reg="";
+			switch(this.className){
+				case 'username':
+					//1.本地验证
+					if(inputStr===""){
+						tipMsg="请输入用户名";
+						break;
+					}
+					if(inputStr.length<4 || inputStr.length>20){
+						tipMsg="长度范围在4-20字符之间";
+						break;
+					}
+					reg = /^\d{4,20}$/;
+					if(reg.test(inputStr)){
+						tipMsg="用户名不能是纯数字，请重新输入";
+						break;
+					}
+					reg = /^[\u4e00-\u9fa5a-zA-Z0-9_\-]{4,20}$/;
+					if(!reg.test(inputStr)){
+						tipMsg='用户名只允许包含汉字、字母、数字及 "-"、"_"组合';
+						break;
+					}
+					
+					//到这里是验证成功
+					input_state[i]=1;	
+				break;
+				case 'password':
+					tipMsg="请输入密码";
+					if(inputStr===""){
+						break;
+					}
+					reg=/^(?![\d]+$)(?![a-zA-Z]+$)(?![^\da-zA-Z]+$).{6,20}$/;
+					if(!reg.test(inputStr)){
+						tipMsg="密码为6-20位字符，由字母，数字和符号两种以上组合";
+						break;
+					}
+					
+					input_state[i]=1;	
+				break;
+				case 'password_repeat':
+					tipMsg="请确认密码";
+					if(inputStr===""){
+						break;
+					}
+					if($($inputs[i]).val()!=$($inputs[i-1]).val()){
+						tipMsg="两次密码不一致，请重新输入";
+						break;
+					}
+					
+					input_state[i]=1;	
+				break;
+				case 'phone_num':
+					tipMsg="请输入手机号";
+					if(inputStr===""){
+						break;
+					}
+					
+					reg=/^1[34578]\d{9}$/;
+					if(!reg.test(inputStr)){
+						tipMsg="手机号输入错误";
+						break;
+					}
+					
+					input_state[i]=1;	
+				break;
+				case 'verification_code':
+					tipMsg="请输入验证码";
+					if(inputStr===""){
+						break;
+					}
+					
+					
+					input_state[i]=1;	
+				break;
+				case 'message_verification_code':
+					tipMsg="请输入短信验证码";
+					if(inputStr===""){
+						break;
+					}
+					
+					
+					input_state[i]=1;	
+				break;
+				default:;break;
+			}
+			if(input_state[i]=== 1 && this.className==="username"){
+					 $.ajax({
+					 	type:"get",
+					 	url:"php/checkUser.php",
+					 	async:true,
+					 	data:{
+					 		"userName":$(".username").val()
+					 	},
+					 	success:function(msg){
+					 		console.log(msg+"msg");
+					 		if(msg=="0"){
+					 			tipMsg="该用户名已被人占用，请修改。"
+					 			input_state[i]=0;
+					 			alert("名称已被占用");
+					 		}else if(msg=="-1"){
+					 			tipMsg="连接服务器失败，请稍后再试。"
+					 			input_state[i]=0;
+					 		}else if(msg=="1"){
+					 			alert("用户名不存在，可以注册");
+					 		}
+					 	}
+					 });
+			}
+			if(input_state[i]===0){
+				//错误状态显示
+				$($tipSpans[i]).text(tipMsg); 
+				$($tipSpans[i]).css({
+					"background":"#FFEBEB",
+					"border-color":"#FFBDBE",
+					"color":"#E83029"
+				});
+				$(this).css("border-color","FFBDBE");
+				return;
+			}else{
+				//正确，隐藏掉提示框，并更换提示图标
+				$($tipSpans[i]).css("display","none");
+				$(this).css("background","url(images/img_register/ico_login.png) right -318px no-repeat");
+			}
+			
+		});
+		
 	}
+	
+//	//注册按钮
+	let $login_btn = $(".login_btn");
+	let $agree_checked = $(".agree_checked");
+	$login_btn.click(function(){
+		if(input_state.indexOf(0)==-1 ){
+			if($agree_checked.prop("checked")==true){
+				console.log("注册成功");
+				$.ajax({
+					type:"post",
+					url:"php/regSave.php",
+					async:true,
+					data:{
+						"userName":$(".username").val(),
+						"userPass":$(".password").val(),
+						"phoneNum":$(".phone_num").val()
+					},
+					success:function(msg){
+						if(msg=="1"){
+							location.href="index.html";
+							//缓存cookie
+						}else if(msg=="-1"){
+							alert("连接服务器失败，请稍后重新注册。");
+						}else if(msg=="0"){
+							alert("该用户已经有人注册，不符程序前面验证");
+						}
+					}
+				});
+			}else{
+				$tipSpans.last().css({
+					"background":"#FFEBEB",
+					"border-color":"#FFBDBE",
+					"color":"#E83029",
+					"display":"block"
+				});
+				$tipSpans.last().text("请接受服务条款");
+			}
+		}else{
+			for(let i=0; i<input_state.length; i++){
+				if(input_state[i]==0){
+					$($inputs[i]).trigger("focus");
+					$($inputs[i]).trigger("blur");
+				}
+			}
+			return;
+		}
+	});
+	
+	//同意条款按钮
+	$agree_checked.click(function(){
+		$($tipSpans.last()).css("display","none");
+	});
 });
+
 
 
 </script>
