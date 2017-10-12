@@ -82,7 +82,8 @@
 .cart_shop_num span {
   float: left;
   width: 18px;
-  height: 18;
+  height: 18px;
+  line-height: 18px;
   background: #f9f9f9;
   border: 1px solid #dbdbdb;
   color: #777777;
@@ -92,12 +93,14 @@
 .cart_shop_num input {
   float: left;
   width: 34px;
-  height: 20px;
+  height: 18px;
   border: none;
   border-top: 1px solid #DBDBDB;
   border-bottom: 1px solid #DBDBDB;
   text-align: center;
-  padding: 0 auto; }
+  padding: 0px;
+
+}
 
 .cart_total {
   padding: 10px 0; }

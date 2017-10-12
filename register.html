@@ -131,6 +131,7 @@
 </body>
 </html>
 <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/cookieTools.js"></script>
 <script type="text/javascript" src="js/public.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -295,17 +296,20 @@ $(function(){
 					 		"userName":$(".username").val()
 					 	},
 					 	success:function(msg){
-					 		console.log(msg+"msg");
 					 		if(msg=="0"){
 					 			tipMsg="该用户名已被人占用，请修改。"
 					 			input_state[i]=0;
-					 			alert("名称已被占用");
+					 			$($tipSpans[i]).css("display","block");
+					 			$(".username").css("background","url(../images/img_register/ico_login.png) right 8px no-repeat");
 					 		}else if(msg=="-1"){
 					 			tipMsg="连接服务器失败，请稍后再试。"
 					 			input_state[i]=0;
+					 			$($tipSpans[i]).css("display","block");
 					 		}else if(msg=="1"){
-					 			alert("用户名不存在，可以注册");
+					 			$($tipSpans[i]).css("display","none");
+					 			$(".username").css("background","url(images/img_register/ico_login.png) right -318px no-repeat");
 					 		}
+					 		$($tipSpans[i]).text(tipMsg); 
 					 	}
 					 });
 			}
@@ -319,10 +323,12 @@ $(function(){
 				});
 				$(this).css("border-color","FFBDBE");
 				return;
-			}else{
+			}else if(this.className!=="username"){
 				//正确，隐藏掉提示框，并更换提示图标
 				$($tipSpans[i]).css("display","none");
 				$(this).css("background","url(images/img_register/ico_login.png) right -318px no-repeat");
+			}else{
+				$($tipSpans[i]).text("等待服务器验证中...");
 			}
 			
 		});
@@ -347,6 +353,7 @@ $(function(){
 					},
 					success:function(msg){
 						if(msg=="1"){
+							addCookie("userName",$(".username").val(),7);
 							location.href="index.html";
 							//缓存cookie
 						}else if(msg=="-1"){
@@ -380,6 +387,9 @@ $(function(){
 	$agree_checked.click(function(){
 		$($tipSpans.last()).css("display","none");
 	});
+	
+	//css里面这里在服务器上一直不更新
+	$(".toolbar_content_left").css("display","block");
 });
 
 

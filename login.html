@@ -133,6 +133,13 @@ $(function(){
 			$(this).css("border","1px solid #ccc");
 		});
 	}
+	//css里面这里在服务器上一直不更新
+	$(".toolbar_content_left").css("display","block");
+	
+	if(document.cookie!=""){ //有缓存
+		$(".login_username").val(getCookie("userName"));
+	}
+	
 	//登录的提示信息
 	let $reg_tip=$(".reg_tip");
 	//登录

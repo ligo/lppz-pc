@@ -81,11 +81,19 @@
 			</div>
 		</div>
 	</div>
+	<div id="add_sum" style="width:100px;height:100px;background:red">
+		<p >0</p>
+		<span id="test_add">增加</span>
+	</div>
 </body>
 </html>
 <script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
 $(function(){
+	$("#test_add").click(function(){
+		$("#add_sum p").text($("#add_sum p").text()+1);
+	});
+	
 	setInterval(function(){
 		if($(window).scrollTop()>=0){
 			$($(".move_01")[0]).animate({top:"10px",opacity:"1"},500);

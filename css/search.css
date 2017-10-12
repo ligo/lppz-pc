@@ -132,6 +132,7 @@
 
 .search_shop_list li {
   width: 25%;
+  height:400px;
   box-sizing: border-box;
   border: 1px solid transparent;
   border-right: 1px solid #eeeeee;
@@ -148,16 +149,25 @@
 .search_shop_list li img:first-child {
   width: 100%; }
 
-.search_shop_list li a:nth-child(2) {
+.search_shop_list li>a:nth-child(2) {
   display: block;
   color: #555555;
+  width:100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height:30px;
   font-size: 14px; }
   .search_shop_list li a:nth-child(2):hover {
     color: #E60012;
     text-decoration: underline; }
 
-.search_shop_list li p:nth-child(3) {
+.search_shop_list li>p:nth-child(3) {
   font-size: 12px;
+  width:100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: #ff0000; }
 
 .search_shop_list li span {
@@ -191,6 +201,7 @@
 .cart .add_to_metion {
   width: 78px;
   padding-left: 14px;
+  color:#555555;
   background-position: -108px -479px; }
 
 .shop_score {

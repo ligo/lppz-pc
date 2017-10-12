@@ -90,3 +90,35 @@ function MenuEvent(){
 		});
 	}
 }      
+
+function login_cookie(){
+	let $no_login_style = $(".toolbar_content_left");
+	let $login_style = $(".toolbar_content_left_logined");
+	if(document.cookie==""){ //非登录
+		$no_login_style.css("display","block");
+		$login_style.css("display","none");
+	}else{//登录状态
+		$no_login_style.css("display","none");
+		$login_style.css("display","block");
+		$(".toolbar_username").text(getCookie("userName"));
+		$(".toolbar_quit").click(function(){
+			removeCookie("userName");
+			$no_login_style.css("display","block");
+			$login_style.css("display","none");
+			location.href="login.html";
+		});
+	}
+}
+
+//模拟生成GUID
+function newGuid()
+{
+    var guid = "";
+    for (var i = 1; i <= 32; i++){
+      var n = Math.floor(Math.random()*16.0).toString(16);
+      guid +=   n;
+      if((i==8)||(i==12)||(i==16)||(i==20))
+        guid += "-";
+    }
+    return guid;   
+}

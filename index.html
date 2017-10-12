@@ -911,26 +911,6 @@
 $(function(){
 	InitUI();
 	MenuEvent();
-	let $no_login_style = $(".toolbar_content_left");
-	let $login_style = $(".toolbar_content_left_logined");
-
-	console.log(document.cookie);
-	console.log(document.cookie=="");
-	if(document.cookie==""){ //非登录
-		$no_login_style.css("display","block");
-		$login_style.css("display","none");
-	}else{
-		$no_login_style.css("display","none");
-		$login_style.css("display","block");
-		$(".toolbar_username").text(getCookie("userName"));
-		$(".toolbar_quit").click(function(){
-			removeCookie("userName");
-			$no_login_style.css("display","block");
-			$login_style.css("display","none");
-			location.href="login.html";
-			console.log("点击");
-//			addCookie("userName","roman"); //测试用
-		});
-	}
+	login_cookie();
 });
 </script>
