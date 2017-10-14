@@ -386,15 +386,45 @@ html,body,div,p,ul,li,ol,dl,dt,dd,table,tr,td,th,form,fieldset,legend,h1,h2,h3,h
 		border-bottom: 1px solid #ddd;
 		background:#FFFFFF;
 	}
+	.buy_show table{
+		width: 100%;
+ 		border-spacing: 0;
+ 		background:#FFFFFF;
+	}
+	.buy_show table tr img{
+		display: block;
+		width:50px;
+		height:50px;
+		border:1px solid #DEDEDE;
+	}
+	.tr_shop_img{
+		padding:3px 3px;
+	}
+	.buy_show tr td{
+		border-bottom: 1px dotted #DDDDDD;
+	}
+	.buy_show tr td b{
+		font-weight: 100;
+		color:#FF0000;
+	}
+	.buy_show tr td i{
+		font-style: normal;
+	}
+	.buy_show tr td a{
+		color:#555;
+	}
+	.buy_show tr td a:hover{
+		text-decoration: underline;
+	}
 	.buy_show_bottom{
 		background:#eee;
-		height: 70px;
 	}
 	.buy_show_bottom .buy_right{
-		float: right;
-		height: 100%;
+		width:100%;
 		text-align: right;
-		margin-right: 10px;
+		padding-right: 10px;
+		box-sizing: border-box;
+		padding-bottom: 10px;
 	}
 	.buy_right>p{
 		height: 40px;
@@ -405,10 +435,12 @@ html,body,div,p,ul,li,ol,dl,dt,dd,table,tr,td,th,form,fieldset,legend,h1,h2,h3,h
 		color:#ff0000;
 	}
 	.buy_right>a{
-		height: 30px;
+		height: 26px;
+		line-height: 26px;
+		float:right;
+		padding:2px 10px;
 		color:#FFF;
 		background:#F04647;
-		padding: 5px 10px;
 		border-radius: 15px;
 	}
 	.buy_right>a:hover{

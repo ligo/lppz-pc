@@ -57,7 +57,7 @@ function InitRightUI(){
 	}); 
 }
 
-
+//动态生成菜单
 function MenuEvent(){
 	let menu_text=[
 		["嗑壳坚果","果果仁仁","特惠炒货"],
@@ -89,8 +89,9 @@ function MenuEvent(){
 			menu_show_dom.style.display="none";
 		});
 	}
-}      
+} 
 
+//顶部登录框根据有无cookie的不同显示状态
 function login_cookie(){
 	let $no_login_style = $(".toolbar_content_left");
 	let $login_style = $(".toolbar_content_left_logined");
@@ -110,6 +111,60 @@ function login_cookie(){
 	}
 }
 
+//从数据库中获取购物车信息
+function updateCartCount(){
+	if(getCookie("userName")!=null){
+		let p =new Promise(function(resolve,reject){
+			$.ajax({
+				type:"get",
+				url:"php/getShoppingCart.php",
+				async:true,
+				data:{
+					"vipName":getCookie("userName") 
+				},
+				success:function(msg){
+					let data=eval(msg);
+					resolve(data);
+				}
+			});
+		});
+		return p;
+	}else{
+		return null;
+	}
+}
+//通过传入的购物车数据来更新购物车数量显示，并调用计算总价
+function setTopCartCount(data){
+	let count=0;
+	for(let i=0; i<data.length; i++){
+		count+=parseInt(data[i].beiyong1);
+	}
+	$(".buy_num b").text(count);
+	$(".cart_shop_count").text(count);
+	if($(".gw .sum").length!=0){
+		$(".gw .sum").text(count);
+	}
+	//购物车总价
+	setCartAllMoney();
+	let p = new Promise(function(reslove,reject){
+		reslove();
+	});
+	return p;
+}
+
+//通过已加载的商品条目来计算购物车总价
+function setCartAllMoney(){
+	let all_money=0;
+	let prices=$(".buy_show tbody .small_cart_price");
+	let nums=$(".buy_show tbody .small_cart_sum");
+	for(let i=0;i<prices.length;i++){
+		let item_price=parseFloat(prices[i].innerText.substring(1))*parseInt(nums[i].innerText);
+		all_money+=item_price;
+	}
+	$(".cart_shop_money").text(all_money.toFixed(2));
+}
+
+
 //模拟生成GUID
 function newGuid()
 {
@@ -122,3 +177,5 @@ function newGuid()
     }
     return guid;   
 }
+
+

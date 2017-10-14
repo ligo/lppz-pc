@@ -39,7 +39,7 @@
 		"goodsCount":"'.$query_row[4].'",
 		"goodsDesc":"'.$query_row[5].'",
 		"goodsImg":"'.$query_row[6].'",
-		"beiyong1":"'.$query_row[22].'",
+		"beiyong1":"'.$query_row[22].'",   //用来存放购物车中的商品数量
 		"beiyong2":"'.$query_row[8].'",
 		"beiyong3":"'.$query_row[9].'",
 		"beiyong4":"'.$query_row[10].'",

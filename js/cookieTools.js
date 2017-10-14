@@ -34,6 +34,9 @@ function removeCookie(key){
 //返回值：键对应的值，如果是null，表示cookie没有存储该键。
 function getCookie(key){
 	var cookieStr = unescape(document.cookie);
+	if(cookieStr==""){
+		return null;
+	}
 	//1、分割数组
 	var arr = cookieStr.split("; ");	
 	//2、在数组里查找

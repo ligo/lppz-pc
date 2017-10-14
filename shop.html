@@ -105,14 +105,14 @@
 				</div>
 			</div>
 			<div class="main_buy">
-				<a href="cart.html">购物车</a>
+				<a href="javascript:;" class="go_cart">购物车</a>
 				<span class="buy_num"><b>0</b></span>
 				<div class="buy_show">
 					<p>最近加入的商品</p>
 					<div class="buy_show_bottom">
 						<div class="buy_right">
 							<p>共计<span>0</span>件商品，共计<span>¥0.00</span></p>
-							<a href="cart.html">去购物车结算</a>
+							<a href="javascript:;" class="go_cart">去购物车结算</a>
 						</div>						
 					</div>
 				</div>
@@ -451,7 +451,7 @@
 				</a>
 			</li>
 			<li class="gw">
-				<a href="cart.html">
+				<a href="javascript:;" class="go_cart">
 					<i class="icon"></i>
 					<span>购物车</span>
 					<small class="sum">0</small>
@@ -507,6 +507,20 @@ $(function(){
 	InitRightUI();
 	MenuEvent();
 	login_cookie();
+	//更新购物车数量
+	let p=updateCartCount();
+	if(p!=null){
+		p.then(setTopCartCount);
+	}
+	//链接购物车
+	$(".go_cart").click(function(){
+		if(getCookie("userName")==null){
+			alert("请先登录");
+			location="login.html";
+		}else{
+			location="cart.html";
+		}
+	});
 	makeHideAndShow($(".menu"),$(".menu_list"),10);
 	//放大镜
 	$(".shop_img").mouseover(function(){

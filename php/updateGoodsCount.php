@@ -16,7 +16,7 @@
 	
 	//3）、传输数据
 	$sqlstr = "update shoppingcart set goodsCount='".$goodsCount."' where vipName='".$vipName."' and goodsId='".$goodsId."'";
-	//echo($sqlstr);
+//	echo($sqlstr);
 	
 	if(!mysql_query($sqlstr,$conn)){
 		die("执行更新SQL语句失败".mysql_error());

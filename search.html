@@ -105,14 +105,19 @@
 				</div>
 			</div>
 			<div class="main_buy">
-				<a href="cart.html">购物车</a>
+				<a href="javascript:;" class="go_cart">购物车</a>
 				<span class="buy_num"><b>0</b></span>
 				<div class="buy_show">
 					<p>最近加入的商品</p>
+					<table>
+						<tbody>
+							
+						</tbody>
+					</table>
 					<div class="buy_show_bottom">
-						<div class="buy_right">
-							<p>共计<span>0</span>件商品，共计<span>¥0.00</span></p>
-							<a href="cart.html">去购物车结算</a>
+						<div class="buy_right clear_float">
+							<p>共计<span class="cart_shop_count">0</span>件商品，共计<span>¥<b class="cart_shop_money">0.00</b></span></p>
+							<a href="javascript:;" class="go_cart">去购物车结算</a>
 						</div>						
 					</div>
 				</div>
@@ -120,7 +125,7 @@
 		</div>
 		<div class="shop_menu">
 			<div class="menu_center">
-				<a href="">首页</a>
+				<a href="index.html">首页</a>
 				<a href="">上新尝鲜</a>
 			</div>
 		</div>
@@ -142,7 +147,7 @@
 		<div class="search_choose">
 			<div class="choose_tit">
 				<h3><b>素食山珍</b>商品筛选</h3>
-				<p>共21个商品</p>
+				<p>共<span class="all_shop_count">21</span>个商品</p>
 			</div>
 			<ul class="choose_item">
 				<li>
@@ -349,7 +354,7 @@
 				</a>
 			</li>
 			<li class="gw">
-				<a href="cart.html">
+				<a href="javascript:;" class="go_cart">
 					<i class="icon"></i>
 					<span>购物车</span>
 					<small class="sum">0</small>
@@ -402,10 +407,27 @@ $(function(){
 	InitTopUI(); 
 	InitRightUI();
 	login_cookie();
-	//获取商品列表
+	//获取商品数据，动态生成商品列表，增加添加到购物车的点击事件
 	getGoods().then(makeGoodsData).then(addToCart);
-
+	//获取购物车数据
+	let p=updateCartCount();
+	//如果获取成功
+	if(p!=null){
+		//动态创建购物车商品猎豹，更新数量和总价，删除按钮的事件注册
+		p.then(setCartList).then(setTopCartCount).then(delete_event);
+	}
+	//链接购物车
+	$(".go_cart").click(function(){
+		if(getCookie("userName")==null){
+			alert("请先登录");
+			location="login.html";
+		}else{
+			location="cart.html";
+		}
+	});
+	
 });
+//获取商品数据
 function getGoods(){
 	let p=new Promise(function(resolve,reject){
 		$.ajax({
@@ -419,8 +441,11 @@ function getGoods(){
 	});
 	return p;
 }
+//通过商品数据动态生成商品列表
 function makeGoodsData(goods_list){
 	let goods_list_arr=eval(goods_list);
+	//商品数量
+	$(".all_shop_count").text(goods_list_arr.length);
 	//动态创建商品
 	for(let i=0; i<goods_list_arr.length; i++){
 		//每个商品的li
@@ -450,9 +475,8 @@ function makeGoodsData(goods_list){
 	});
 	return p;
 }
-
+//注册添加到购物车事件
 function addToCart(){
-	//添加到购物车
 	$add_to_carts=$(".add_to_cart");
 	for(let i=0; i<$add_to_carts.length; i++){
 		$($add_to_carts[i]).click(function(){
@@ -471,9 +495,10 @@ function addToCart(){
 					},
 					success:function(msg){
 						if(msg==1){
-							alert("加入购物车成功");
 							$(".buy_num b").text(parseInt($(".buy_num b").text())+1);
 							$(".gw .sum").text(parseInt($(".gw .sum").text())+1);
+							updateCartCount().then(setCartList).then(setTopCartCount).then(delete_event);
+							alert("加入购物车成功");
 						}else{
 							alert("加入购物车失败，请稍后再试");
 						}
@@ -483,5 +508,62 @@ function addToCart(){
 		});
 	}
 }
+
+//动态创建购物车产品
+function setCartList(data){
+	let goods_list_arr=data;
+	//动态创建商品
+	for(let i=0; i<goods_list_arr.length; i++){
+		$tr_goods_tr=$("<tr></tr>");
+		$tr_goods_tr.attr("goodsid",goods_list_arr[i].goodsId);
+		 //图片
+		$li_goods_img=$('<td class="tr_shop_img" width=60><a href="javascript:;"><img/></a></td>');
+		$li_goods_img.children().children().prop("src",goods_list_arr[i].goodsImg); //图片
+		//名称
+		$li_goods_name=$("<td><a></a></td>");
+		$li_goods_name.children("a").text(goods_list_arr[i].goodsName);//名称
+		$li_goods_name.children("a").prop({
+			"title":goods_list_arr[i].goodsName,
+			"target":"_blank"
+		});
+		$li_goods_delete=$('<td><span><b class="small_cart_price">¥'+goods_list_arr[i].goodsPrice+'</b> x <i class="small_cart_sum">'+goods_list_arr[i].beiyong1+'</i></span><br/><a href="javascript:;" class="cart_delete_btn">删除</a></td>');
+		$tr_goods_tr.append($li_goods_img,$li_goods_name,$li_goods_delete);
+		$(".buy_show tbody").append($tr_goods_tr);
+	}
+	var p = new Promise(function(resolve,reject){
+		resolve(goods_list_arr);
+	});
+	return p;
+}
+	
+//商品删除按钮事件注册
+function delete_event(){
+	$(".cart_delete_btn").click(function(){
+		let goodsid=$(this).parents("tr").attr("goodsid");
+		if(!confirm("真的真的真的不想要了？")){
+				return;
+		}
+		$.ajax({
+			type:"get",
+			url:"php/deleteGoods.php",
+			async:true,
+			data:{
+				"vipName":getCookie("userName"),
+				"goodsId":$(this).parents("tr").attr("goodsid")
+			},
+			success:function(msg){
+				if(msg==1){
+					$(".buy_show tbody tr").remove("tr[goodsid="+goodsid+"]");
+					//更新购物车数量和总价
+					updateCartCount().then(setTopCartCount);
+					console.log("删除成功");
+				}else{
+					console.log("删除失败");
+				}
+			}
+		});
+	});
+}
+
 
 </script>

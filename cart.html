@@ -177,15 +177,13 @@
 								<a href="">删除</a><br/>
 								<a href="">移到我的关注</a>
 							</td>
-						</tr>-->
-				
-					
+						</tr>-->			
 					</tbody>
 				</table>
 				<div class="cart_total">
 					<input type="checkbox" class="all_select" checked/>
 					&nbsp;&nbsp;全选
-					<a href="" class="cart_delete">删除</a>
+					<a href="javascript:;" class="cart_delete">删除</a>
 					<a href="index.html">继续购物</a>
 				</div>
 				<div class="cart_bottom clear_float">
@@ -361,8 +359,6 @@ $(function(){
 	if(document.cookie!=""){
 		getCartGoods().then(makeCartGoodsData).then(InitData);
 	}
-	
-	
 });
 
 //初始化数据
@@ -393,9 +389,51 @@ function InitData(){
 	let $all_item_price=$(".single_price span");  //单价
 	let $all_item_all_price=$(".item_total b");	  //小计
 	
-	
+	let $delete_goods=$(".cart_delete");//删除商品(按勾选删除，单个按钮)
+	let $delete_goods_items=$(".delete_goods_item");//单品删除按钮
+	$delete_goods.click(function(){
+		if(!confirm("没钱了？")){
+				return;
+		}
+		for(let i=0; i<$checkboxs.length; i++){
+			if($checkboxs[i].checked==true){
+				$($delete_goods_items[i]).trigger("click",true);
+			}
+		}
+	});
 	//绑定数量改变的事件 (加减、文字改变)
 	for(let i=0; i<$all_sub_btn.length; i++){
+		//单项删除
+		$($delete_goods_items[i]).click(function(event,isAllDelete=false){
+			if(isAllDelete==false){ //不是全部删除的时候再弹出提示框
+				if(!confirm("没钱了？")){
+					return;
+				}
+			}
+			let goodsid=$(this).parents("tr").attr("goodsid");
+			$(".cart_cont_area tbody tr").remove("tr[goodsid="+goodsid+"]");
+			$.ajax({
+				type:"get",
+				url:"php/deleteGoods.php",
+				async:true,
+				data:{
+					"vipName":getCookie("userName"),
+					"goodsId":$($delete_goods_items[i]).parents("tr").attr("goodsid")
+				},
+				success:function(msg){
+					if(msg==1){
+						console.log("删除成功");
+					}else{
+						console.log("删除失败");
+					}
+				}
+			});
+			//计算总价
+			getAllMoney();
+			//更新购物车数量显示
+			getShopCount();
+		});
+		//数量改变
 		$($all_shop_num[i]).change(function(){
 			let shop_num=parseInt($($all_shop_num[i]).val());
 			if(shop_num<=1){
@@ -408,7 +446,26 @@ function InitData(){
 			$($all_item_all_price[i]).text(single_price.toFixed(2));
 			//计算总价
 			getAllMoney();
+			//更新购物车数量显示
 			getShopCount();
+			//更新数据库信息
+			$.ajax({
+				type:"get",
+				url:"php/updateGoodsCount.php",
+				async:true,
+				data:{
+					"vipName":getCookie("userName"),
+					"goodsId":$(this).parents("tr").attr("goodsid"),
+					"goodsCount":$all_shop_num[i].value
+				},
+				success:function(msg){
+					if(msg==1){
+						console.log("存入数据库成功");
+					}else{
+						console.log("error");
+					}
+				}
+			});
 		});
 		$($all_sub_btn[i]).click(function(){
 			let shop_num=parseInt($($all_shop_num[i]).val());
@@ -422,7 +479,26 @@ function InitData(){
 			$($all_item_all_price[i]).text(single_price.toFixed(2));
 			//计算总价
 			getAllMoney();
+			//更新购物车数量显示
 			getShopCount();
+			//更新数据库信息
+			$.ajax({
+				type:"get",
+				url:"php/updateGoodsCount.php",
+				async:true,
+				data:{
+					"vipName":getCookie("userName"),
+					"goodsId":$(this).parents("tr").attr("goodsid"),
+					"goodsCount":$all_shop_num[i].value
+				},
+				success:function(msg){
+					if(msg==1){
+						console.log("存入数据库成功");
+					}else{
+						console.log("error");
+					}
+				}
+			});
 		});
 		$($all_add_btn[i]).click(function(){
 			let shop_num=parseInt($($all_shop_num[i]).val());
@@ -436,12 +512,32 @@ function InitData(){
 			$($all_item_all_price[i]).text(single_price.toFixed(2));
 			//计算总价
 			getAllMoney();
+			//更新购物车数量显示
 			getShopCount();
+			//更新数据库信息
+			$.ajax({
+				type:"get",
+				url:"php/updateGoodsCount.php",
+				async:true,
+				data:{
+					"vipName":getCookie("userName"),
+					"goodsId":$(this).parents("tr").attr("goodsid"),
+					"goodsCount":$all_shop_num[i].value
+				},
+				success:function(msg){
+					if(msg==1){
+						console.log("存入数据库成功");
+					}else{
+						console.log("error");
+					}
+				}
+			});
 		});
 	}
 	//计算总金额
 	function getAllMoney(){
-		let total_price=0;
+		let total_price=0;	
+		let $checkboxs = $(".cart_cont_area td :checkbox");
 		for(let i=0; i<$checkboxs.length; i++){
 			if($checkboxs[i].checked==true){
 				total_price+=parseFloat($all_item_all_price[i].innerText);
@@ -453,6 +549,7 @@ function InitData(){
 	getAllMoney();
 	getShopCount();
 }
+
 //更新购物车的数量
 function getShopCount(){
 	let $all_shop_num=$(".cart_shop_num input");
@@ -486,6 +583,7 @@ function makeCartGoodsData(goods_list){
 	for(let i=0; i<goods_list_arr.length; i++){
 		//每个商品的tr
 		$tr_goods_tr=$("<tr></tr>");
+		$tr_goods_tr.attr("goodsid",goods_list_arr[i].goodsId);
 		$tr_goods_checkbox=$('<td><input type="checkbox" checked/></td>');//checkbox
 		 //图片
 		$li_goods_img=$('<td><a href="javascript:;"><img class="shop_img"/></a></td>');
@@ -505,7 +603,7 @@ function makeCartGoodsData(goods_list){
 		//单条价格
 		$li_goods_item_price=$('<td><span class="item_total">¥<b>29.90</b></span></td>');
 		//删除，移到关注
-		$li_goods_delete=$('<td><a href="">删除</a><br/><a href="">移到我的关注</a></td>');
+		$li_goods_delete=$('<td><a href="javascript:;" class="delete_goods_item">删除</a><br/><a href="">移到我的关注</a></td>');
 		//添加进tr
 		$tr_goods_tr.append($tr_goods_checkbox,$li_goods_img,$li_goods_name,$li_goods_priceS,$li_goods_num,$li_goods_item_price,$li_goods_delete);
 		$(".cart_cont_area tbody").append($tr_goods_tr);
