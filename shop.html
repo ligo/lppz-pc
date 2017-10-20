@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>伊朗开心果190g-良品铺子官方商城-休闲零食网购首选（LPPZ.COM）- 品质保障、配送及时、放心服务、轻松购物!</title>
+	<title>良品铺子官方商城-休闲零食网购首选（LPPZ.COM）- 品质保障、配送及时、放心服务、轻松购物!</title>
 	<meta name="description" content="良品铺子LPPZ.COM-专业的休闲食品网上购物商城，在线销售肉脯鱼干、果干果脯、糕点糖果、素食山珍、茶水饮料、进口食品、礼盒等数百种优质食品。便捷、诚信的服务，为您提供愉悦的休闲食品网上购物体验! ">
 	<meta name="Keywords" content="网上商城,休闲零食，美食，牛肉干，鱼干，果干果脯，糕点糖果，素食山珍，茶水饮料，进口食品，礼盒，良品铺子">
 </head>
@@ -109,9 +109,14 @@
 				<span class="buy_num"><b>0</b></span>
 				<div class="buy_show">
 					<p>最近加入的商品</p>
+					<table>
+						<tbody>
+							
+						</tbody>
+					</table>
 					<div class="buy_show_bottom">
-						<div class="buy_right">
-							<p>共计<span>0</span>件商品，共计<span>¥0.00</span></p>
+						<div class="buy_right clear_float">
+							<p>共计<span class="cart_shop_count">0</span>件商品，共计<span>¥<b class="cart_shop_money">0.00</b></span></p>
 							<a href="javascript:;" class="go_cart">去购物车结算</a>
 						</div>						
 					</div>
@@ -183,14 +188,15 @@
 				</div>
 				<!--右侧商品信息-->
 				<div class="shop_infomation">
-					<h3>伊朗开心果190g</h3>
-					<p class="shop_description">清甜微咸</p>
+					<h3></h3>
+					<p class="shop_description"></p>
 					<div class="shop_info">
 						<div class="shop_price">
-							<p>价格：</p><span>¥<b>25</b>.90</span>
+							<p>价格：</p>
+							<span>¥<b></b><b></b></span>
 						</div>
 						<div class="sales">
-							<p>月销量：</p><span>10022</span>
+							<p>月销量：</p><span></span>
 						</div>
 						<div class="grade">
 							<p>商品评分：</p><i></i><span>( 累计评价：<a href="">0</a> )</span>
@@ -213,7 +219,6 @@
 						<a href="">加入购物车></a>
 						<a href="">加关注</a>
 					</div>
-					
 				</div>
 			</div>
 		</div>
@@ -507,11 +512,79 @@ $(function(){
 	InitRightUI();
 	MenuEvent();
 	login_cookie();
+	let goodsId=getCookie("goodsId");
+	removeCookie("goodsId");
+	getGoods().then(makeGoodsData);
 	//更新购物车数量
 	let p=updateCartCount();
 	if(p!=null){
-		p.then(setTopCartCount);
+		//动态创建购物车商品列表，更新数量和总价，删除按钮的事件注册
+		p.then(setCartList).then(setTopCartCount).then(delete_event);
 	}
+	
+	//获取商品数据
+	function getGoods(){
+		let p=new Promise(function(resolve,reject){
+			$.ajax({
+				type:"get",
+				url:"php/getGoodsInfo.php",
+				async:true,
+				data:{
+					"goodsId":goodsId
+				},
+				success:function(msg){
+					resolve(msg);
+				}
+			});
+		});
+		return p;
+	}
+	//通过商品数据动态改变商品信息
+	function makeGoodsData(goods_list){
+		goods_list_json=JSON.parse(goods_list);
+		console.log(goods_list_json);
+		$(".small_imgs focus_li img").prop("src",goods_list_json.goodsImg);//放大镜图片
+		$(".shop_img").css({
+			"background":"url("+goods_list_json.goodsImg+") no-repeat",
+			"backgroundSize":"100% 100%"
+		});
+		$(".share span:first-child").text("商品SKU:"+goodsId);//商品SKU	
+		let $shop_infomation = $(".shop_infomation");
+		$shop_infomation.children("h3").text(goods_list_json.goodsName);//商品名称
+		$shop_infomation.children("p").text(goods_list_json.goodsDesc);//商品描述
+		let price=parseFloat(goods_list_json.goodsPrice).toFixed(2).split(".");
+		$(".shop_price b:first-child").text(price[0]);
+		$(".shop_price b:last-child").text("."+price[1]);//价格
+		$(".sales span").text(goods_list_json.goodsCount);//月销量
+		//放大镜
+		$(".shop_img").mouseover(function(){
+			$(".shop_img").bigMirror({
+				//容器的dom对象
+				boxDom : $(".shop_img")[0],
+				//放大镜的尺寸（宽和高）
+				width : 200,
+				height : 200,
+				//放大的倍数
+				mult : 2,
+				//透明度
+				opacity : 0.5,
+				//背景色
+				bgColor : "#FEDE4F",					
+				//放大效果
+				bigObj : {
+					//位置
+					pos:"右",
+					pic:goods_list_json.goodsImg
+				}
+			});
+		});
+		
+		var p = new Promise(function(resolve,reject){
+			resolve();
+		});
+		return p;
+	}
+	
 	//链接购物车
 	$(".go_cart").click(function(){
 		if(getCookie("userName")==null){
@@ -522,28 +595,7 @@ $(function(){
 		}
 	});
 	makeHideAndShow($(".menu"),$(".menu_list"),10);
-	//放大镜
-	$(".shop_img").mouseover(function(){
-		$(".shop_img").bigMirror({
-			//容器的dom对象
-			boxDom : $(".shop_img")[0],
-			//放大镜的尺寸（宽和高）
-			width : 200,
-			height : 200,
-			//放大的倍数
-			mult : 2,
-			//透明度
-			opacity : 0.5,
-			//背景色
-			bgColor : "#FEDE4F",					
-			//放大效果
-			bigObj : {
-				//位置
-				pos:"右",
-				pic:"images/img_shop/1.jpg"
-			}
-		});
-	});
+
 });
 
 </script>

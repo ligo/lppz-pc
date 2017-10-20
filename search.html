@@ -413,7 +413,7 @@ $(function(){
 	let p=updateCartCount();
 	//如果获取成功
 	if(p!=null){
-		//动态创建购物车商品猎豹，更新数量和总价，删除按钮的事件注册
+		//动态创建购物车商品列表，更新数量和总价，删除按钮的事件注册
 		p.then(setCartList).then(setTopCartCount).then(delete_event);
 	}
 	//链接购物车
@@ -427,6 +427,7 @@ $(function(){
 	});
 	
 });
+
 //获取商品数据
 function getGoods(){
 	let p=new Promise(function(resolve,reject){
@@ -449,12 +450,12 @@ function makeGoodsData(goods_list){
 	//动态创建商品
 	for(let i=0; i<goods_list_arr.length; i++){
 		//每个商品的li
-		$li_goods_li=$("<li></li>");
+		$li_goods_li=$('<li goodsId='+goods_list_arr[i].goodsId+'></li>');
 		 //图片
 		$li_goods_img=$("<img/>");
 		$li_goods_img.prop("src",goods_list_arr[i].goodsImg); //图片
 		//名称
-		$li_goods_nameA=$("<a></a>");
+		$li_goods_nameA=$('<a href="shop.html" class="link_shop"></a>');
 		$li_goods_nameA.text(goods_list_arr[i].goodsName);//名称
 		//描述
 		$li_goods_descP=$("<p></p>");
@@ -478,12 +479,14 @@ function makeGoodsData(goods_list){
 //注册添加到购物车事件
 function addToCart(){
 	$add_to_carts=$(".add_to_cart");
+	$link_shop=$(".link_shop");
 	for(let i=0; i<$add_to_carts.length; i++){
 		$($add_to_carts[i]).click(function(){
-			if(document.cookie==""){
+			if(getCookie("userName"==null)){
 				alert("请先登录！");
 				location.href="login.html";
 			}else{
+				$(".buy_show tbody").empty();
 				$.ajax({
 					type:"get",
 					url:"php/addShoppingCart.php",
@@ -507,63 +510,11 @@ function addToCart(){
 			}
 		});
 	}
+	$link_shop.click(function(){
+		addCookie("goodsId",$(this).parents("li").attr("goodsId"),7);
+	});
 }
 
-//动态创建购物车产品
-function setCartList(data){
-	let goods_list_arr=data;
-	//动态创建商品
-	for(let i=0; i<goods_list_arr.length; i++){
-		$tr_goods_tr=$("<tr></tr>");
-		$tr_goods_tr.attr("goodsid",goods_list_arr[i].goodsId);
-		 //图片
-		$li_goods_img=$('<td class="tr_shop_img" width=60><a href="javascript:;"><img/></a></td>');
-		$li_goods_img.children().children().prop("src",goods_list_arr[i].goodsImg); //图片
-		//名称
-		$li_goods_name=$("<td><a></a></td>");
-		$li_goods_name.children("a").text(goods_list_arr[i].goodsName);//名称
-		$li_goods_name.children("a").prop({
-			"title":goods_list_arr[i].goodsName,
-			"target":"_blank"
-		});
-		$li_goods_delete=$('<td><span><b class="small_cart_price">¥'+goods_list_arr[i].goodsPrice+'</b> x <i class="small_cart_sum">'+goods_list_arr[i].beiyong1+'</i></span><br/><a href="javascript:;" class="cart_delete_btn">删除</a></td>');
-		$tr_goods_tr.append($li_goods_img,$li_goods_name,$li_goods_delete);
-		$(".buy_show tbody").append($tr_goods_tr);
-	}
-	var p = new Promise(function(resolve,reject){
-		resolve(goods_list_arr);
-	});
-	return p;
-}
-	
-//商品删除按钮事件注册
-function delete_event(){
-	$(".cart_delete_btn").click(function(){
-		let goodsid=$(this).parents("tr").attr("goodsid");
-		if(!confirm("真的真的真的不想要了？")){
-				return;
-		}
-		$.ajax({
-			type:"get",
-			url:"php/deleteGoods.php",
-			async:true,
-			data:{
-				"vipName":getCookie("userName"),
-				"goodsId":$(this).parents("tr").attr("goodsid")
-			},
-			success:function(msg){
-				if(msg==1){
-					$(".buy_show tbody tr").remove("tr[goodsid="+goodsid+"]");
-					//更新购物车数量和总价
-					updateCartCount().then(setTopCartCount);
-					console.log("删除成功");
-				}else{
-					console.log("删除失败");
-				}
-			}
-		});
-	});
-}
 
 
 </script>

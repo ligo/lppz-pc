@@ -95,7 +95,7 @@ function MenuEvent(){
 function login_cookie(){
 	let $no_login_style = $(".toolbar_content_left");
 	let $login_style = $(".toolbar_content_left_logined");
-	if(document.cookie==""){ //非登录
+	if(getCookie("userName")==null){ //非登录
 		$no_login_style.css("display","block");
 		$login_style.css("display","none");
 	}else{//登录状态
@@ -179,3 +179,59 @@ function newGuid()
 }
 
 
+
+//动态创建购物车产品
+function setCartList(data){
+	let goods_list_arr=data;
+	//动态创建商品
+	for(let i=0; i<goods_list_arr.length; i++){
+		$tr_goods_tr=$("<tr></tr>");
+		$tr_goods_tr.attr("goodsid",goods_list_arr[i].goodsId);
+		 //图片
+		$li_goods_img=$('<td class="tr_shop_img" width=60><a href="javascript:;"><img/></a></td>');
+		$li_goods_img.children().children().prop("src",goods_list_arr[i].goodsImg); //图片
+		//名称
+		$li_goods_name=$("<td><a></a></td>");
+		$li_goods_name.children("a").text(goods_list_arr[i].goodsName);//名称
+		$li_goods_name.children("a").prop({
+			"title":goods_list_arr[i].goodsName,
+			"target":"_blank"
+		});
+		$li_goods_delete=$('<td><span><b class="small_cart_price">¥'+goods_list_arr[i].goodsPrice+'</b> x <i class="small_cart_sum">'+goods_list_arr[i].beiyong1+'</i></span><br/><a href="javascript:;" class="cart_delete_btn">删除</a></td>');
+		$tr_goods_tr.append($li_goods_img,$li_goods_name,$li_goods_delete);
+		$(".buy_show tbody").append($tr_goods_tr);
+	}
+	var p = new Promise(function(resolve,reject){
+		resolve(goods_list_arr);
+	});
+	return p;
+}
+	
+//商品删除按钮事件注册
+function delete_event(){
+	$(".cart_delete_btn").click(function(){
+		let goodsid=$(this).parents("tr").attr("goodsid");
+		if(!confirm("真的真的真的不想要了？")){
+				return;
+		}
+		$.ajax({
+			type:"get",
+			url:"php/deleteGoods.php",
+			async:true,
+			data:{
+				"vipName":getCookie("userName"),
+				"goodsId":$(this).parents("tr").attr("goodsid")
+			},
+			success:function(msg){
+				if(msg==1){
+					$(".buy_show tbody tr").remove("tr[goodsid="+goodsid+"]");
+					//更新购物车数量和总价
+					updateCartCount().then(setTopCartCount);
+					console.log("删除成功");
+				}else{
+					console.log("删除失败");
+				}
+			}
+		});
+	});
+}

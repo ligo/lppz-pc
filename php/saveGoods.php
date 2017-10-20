@@ -24,13 +24,13 @@
 	
 	//2、数据保存在数据库中
 	//1）、建立连接
-	$conn = mysql_connect("localhost","root","qianfeng");
+	$conn = mysql_connect("localhost","root","940923");
 	if(!$conn){
 		die("数据库连接失败：".mysql_error());
 	}
 	
 	//2）、选择数据库
-	if(!mysql_select_db("shoppingcenter",$conn)){
+	if(!mysql_select_db("lppz",$conn)){
 		die("数据库选择失败".mysql_error());
 	};
 	

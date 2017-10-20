@@ -66,7 +66,7 @@
 .shop_img {
   width: 400px;
   height: 400px;
-  background: url(../images/img_shop/1.jpg);
+  /*background: url(../images/img_shop/1.jpg);*/
   background-size: 100% 100%;
   position: relative; }
 

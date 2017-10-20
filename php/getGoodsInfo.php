@@ -18,8 +18,8 @@
 		die("获取数据失败".mysql_error());
 	}		
 	//查询列数
-	 $query_cols = mysql_num_fields($result);
-	 //echo "列数：".$query_cols;
+	$query_cols = mysql_num_fields($result);
+	//echo "列数：".$query_cols;
 	//查询行数
     $query_num =mysql_num_rows($result);
     //echo "行数：".$query_num;
